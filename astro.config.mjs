@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import Unocss from '@unocss/astro'
+import { presetAttributify, presetUno } from 'unocss';
 import presetIcons from '@unocss/preset-icons'
 import transformerDirectives from '@unocss/transformer-directives'
 
@@ -8,12 +9,16 @@ import transformerDirectives from '@unocss/transformer-directives'
 export default defineConfig({
   integrations: [
     Unocss({
-      presets: [presetIcons({
-        prefix: 'i-',
-        extraProperties: {
-          display: 'inline-block'
-        }
-      })],
+      presets: [
+        presetAttributify(),
+        presetUno(),
+        presetIcons({
+          prefix: 'i-',
+          extraProperties: {
+            display: 'inline-block'
+          }
+        })
+      ],
       transformers: [
         transformerDirectives()
       ]

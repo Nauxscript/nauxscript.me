@@ -11,7 +11,9 @@ export default defineConfig({
     Unocss({
       presets: [
         presetAttributify(),
-        presetUno(),
+        presetUno({
+          dark: 'class'
+        }),
         presetIcons({
           prefix: 'i-',
           extraProperties: {

@@ -1,0 +1,63 @@
+#app {
+  display: flex;
+  height: 50vh;
+  width: 50vw;
+  background: yellow;
+  position: relative;
+  overflow: hidden;
+}
+
+#app * {
+  z-index: 1;
+}
+
+#app::before {
+  content: "";
+  position: absolute;
+  top: 175%;
+  left: 175%;
+  width: 150%;
+  height: 150%;
+  border-radius: 35%;
+  background-color: rgb(240, 228, 228, 0.2);
+  animation: wave_two 7s linear;
+}
+
+#app::after {
+  content: "";
+  position: absolute;
+  top: 175%;
+  left: 175%;
+  width: 150%;
+  height: 150%;
+  border-radius: 45%;
+  background-color: rgb(240, 228, 228);
+  animation: wave 3s linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes wave {
+  0% {
+    transform: translate(-50%, -65%) rotate(0deg);
+    top: 175%;
+    left: 175%;
+  }
+  100% {
+    top: 65%;
+    left: 55%;
+    transform: translate(-50%, -65%) rotate(360deg);
+  }
+}
+
+@keyframes wave_two {
+  0% {
+    transform: translate(-50%, -65%) rotate(0deg);
+    top: 175%;
+    left: 175%;
+  }
+  100% {
+    top: 65%;
+    left: 55%;
+    transform: translate(-50%, -65%) rotate(360deg);
+  }
+}

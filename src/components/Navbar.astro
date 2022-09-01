@@ -3,11 +3,11 @@ import NavItem from "./NavItem.astro";
 
 console.log(Astro.url.pathname);
 ---
-<nav lg:w-screen w-4>
+<nav lg:w-screen w-4 h-6 b-2>
   <NavItem href="/">Me</NavItem>
   <NavItem href="/blog">Blog</NavItem>
   <NavItem href="/projects">Projects</NavItem>
-  <NavItem href="https://github.com/Nauxscript">github</NavItem>
+  <NavItem href="https://github.com/Nauxscript" target="_blank">github</NavItem>
   <NavItem href="https://github.com/Nauxscript">twitter</NavItem>
   <button>dark</button>
 </nav>

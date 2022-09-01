@@ -1,5 +1,7 @@
 import { defineConfig } from 'astro/config';
-import Unocss from '@unocss/astro'
+// import Unocss from '@unocss/astro'
+// fixed unocss hmr bug, see in issue: https://github.com/withastro/astro/issues/3291
+import Unocss from 'astro-uno'
 import { presetAttributify, presetUno } from 'unocss';
 import presetIcons from '@unocss/preset-icons'
 import transformerDirectives from '@unocss/transformer-directives'
@@ -23,7 +25,10 @@ export default defineConfig({
       ],
       transformers: [
         transformerDirectives()
-      ]
+      ],
+      astro: {
+        autoImport: true
+      }
     })
   ]
 });

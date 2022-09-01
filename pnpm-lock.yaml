@@ -4,12 +4,14 @@ specifiers:
   '@unocss/preset-icons': ^0.45.12
   '@unocss/transformer-directives': ^0.45.12
   astro: ^1.0.8
+  astro-uno: ^0.2.0
   unocss: ^0.45.12
 
 devDependencies:
   '@unocss/preset-icons': 0.45.12
   '@unocss/transformer-directives': 0.45.12
   astro: 1.0.8
+  astro-uno: 0.2.0_astro@1.0.8+unocss@0.45.12
   unocss: 0.45.12
 
 packages:
@@ -789,6 +791,16 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       tslib: 2.4.0
+    dev: true
+
+  /astro-uno/0.2.0_astro@1.0.8+unocss@0.45.12:
+    resolution: {integrity: sha512-ARZmTflFEMbr0vVhCZCAjKMKz24X+98JHi5QdP6XfUngN2B2PELSBbAl3CTJ5BVrZTPqXcLMLKWSu2krVWTeQg==}
+    peerDependencies:
+      astro: ^1.0.0-beta.42
+      unocss: '*'
+    dependencies:
+      astro: 1.0.8
+      unocss: 0.45.12
     dev: true
 
   /astro/1.0.8:

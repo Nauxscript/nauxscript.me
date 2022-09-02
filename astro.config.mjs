@@ -26,9 +26,6 @@ export default defineConfig({
       transformers: [
         transformerDirectives()
       ],
-      astro: {
-        autoImport: true
-      }
     })
   ]
 });

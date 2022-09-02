@@ -3,6 +3,7 @@ date: 2021-12-13 10:40:20
 tags: ["TailwindCSS", "前端", "CSS"]
 categories: 2021
 cover: https://pic.imgdb.cn/item/61b6f78f2ab3f51d913fa957.png
+title: Tailwind CSS v3.0 介绍（自译）
 ---
 
 Tailwind CSS v3.0 版本来了 —— 带着令人难以置信的性能提升，巨大的工作流程改进，以及大量意想不到的新奇功能来了。

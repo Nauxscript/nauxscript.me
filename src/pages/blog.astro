@@ -1,10 +1,21 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
 
+const articles = await Astro.glob('../article/*.md');
+// console.log(articles[0].getHeadings());
 ---
 
 <Layout title="Blog">
-	<main>
-		<h2 bg-yellow-200 >this is blog page, there will be put the blog content</h2>	
-	</main>
+  <main>
+    <h2 bg-yellow-200>this is blog page, there will be put the blog content</h2>
+      {
+				articles.map((article, index) => (<h3 tabindex={index} focus-bg-red>{article.frontmatter.title}</h3>))
+			}
+  </main>
 </Layout>
+
+<style>
+.article:focus {
+	background-color: red;
+}
+</style>

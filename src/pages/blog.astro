@@ -5,17 +5,21 @@ const articles = await Astro.glob('../article/*.md');
 // console.log(articles[0].getHeadings());
 ---
 
+<script is:inline></script>
+
 <Layout title="Blog">
   <main>
     <h2 bg-yellow-200>this is blog page, there will be put the blog content</h2>
-      {
-				articles.map((article, index) => (<h3 tabindex={index} focus-bg-red>{article.frontmatter.title}</h3>))
-			}
+    {
+      articles.map((article, index) => (
+        <h3 tabindex={index} focus-bg-red focus-h-3xl focus-b-2>
+          {article.frontmatter.title}
+        </h3>
+      ))
+    }
   </main>
 </Layout>
 
 <style>
-.article:focus {
-	background-color: red;
-}
+  
 </style>

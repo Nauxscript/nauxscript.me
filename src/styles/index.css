@@ -134,3 +134,9 @@ body * {
     transform: translate(-50%, -60%) rotate(360deg);
   }
 }
+
+
+* {
+  color: #3e3e3e;
+  font-family: Fira code, Helvetica, sans-serif; 
+}

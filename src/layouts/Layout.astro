@@ -1,5 +1,6 @@
 ---
 import 'unocss-hmr-fix'
+import Article from '../components/Article.astro';
 import Navbar from '../components/Navbar.astro';
 import '../styles/index.css';
 export interface Props {
@@ -18,7 +19,8 @@ const { title } = Astro.props as Props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body m-0 p-0>
+  <body m-0 p-0 h-screen w-screen overflow-hidden>
+    <Article></Article>
     <Navbar />
     <slot />
   </body>

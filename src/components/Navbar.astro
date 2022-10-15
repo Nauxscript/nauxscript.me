@@ -2,11 +2,17 @@
 import NavItem from "./NavItem.astro";
 
 ---
-<nav class="flex lg:w-screen w-4 h-20 b-gray justify-end">
-  <NavItem href="/">Me</NavItem>
+
+<div flex justify-end items-center w-1024px m-x-auto box-border h-20>
+  <div rounded-inregular-1 w-4 h-4 bg-gray cursor-pointer hover:bg-black hover:rounded-inregular-2 transition-all></div>
+</div>
+<nav hidden class="lg:w-screen w-4 h-20 b-gray justify-end ">
+  <!-- <NavItem href="/">Me</NavItem>
   <NavItem href="/blog">Blog</NavItem>
   <NavItem href="/projects">Projects</NavItem>
   <NavItem href="https://github.com/Nauxscript" target="_blank">github</NavItem>
-  <NavItem href="https://github.com/Nauxscript">twitter</NavItem>
-  <button>dark</button>
+  <NavItem href="https://github.com/Nauxscript">twitter</NavItem> -->
+  <NavItem href="/">不才</NavItem>
+  <NavItem href="/blog">拙笔</NavItem>
+  <button>明 / 暗</button>
 </nav>

@@ -1,12 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Logo from '../components/Logo.astro';
 ---
 
 <Layout title="Hello, it's me.">
   <main lg="w-1024px m-auto p-0" w-full p-4>
-    <h2>你好，我是 Naux。</h2>
-    <h2>Helle, it's Me, Naux.</h2>
-    <h3>1996年生人，昌黎公所曰天下之穷处人士。</h3>
-    <h3>2014年求学于广东医科大学，现就职于羊城。</h3>
+    <div>
+      <div font-serif flex flex-col font-bold text-8 lh-none mb-8>
+        <span>汤遒之</span>
+        <span>Naux Tang</span>
+        <span>' Stuff</span>
+      </div>
+
+      <div font-serif flex flex-col font-bold text-6 lh-none>
+        <span>1996年生人,</span>
+        <span>昌黎公所曰天下之穷处人士。</span>
+        <span>2014年求学于广东医科大学，现就职于羊城。</span>
+      </div>
+    </div>
   </main>
 </Layout>

@@ -29,7 +29,7 @@ export default defineConfig({
       rules: [
         ['rounded-inregular-1', { 'border-radius': '83% 34% 50% 61% / 62% 56% 65% 50%' }],
         ['rounded-inregular-2', { 'border-radius': '35% 79% 50% 45% / 69% 92% 26% 35%' }],
-        ['lh-tighter', { 'line-height': '1.1' }]
+        ['lh-tighter', { 'line-height': '0.8' }]
       ]
     })
   ]

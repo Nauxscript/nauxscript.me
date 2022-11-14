@@ -1,6 +1,6 @@
 ---
 import 'unocss-hmr-fix'
-import Article from '../components/Article.astro';
+// import Article from '../components/Article.astro';
 import Navbar from '../components/Navbar.astro';
 import '../styles/index.css';
 export interface Props {
@@ -20,7 +20,7 @@ const { title } = Astro.props as Props;
     <title>{title}</title>
   </head>
   <body m-0 p-0 h-screen w-screen overflow-hidden flex flex-col>
-    <Article></Article>
+    <!-- <Article></Article> -->
     <Navbar />
     <slot flex-1 />
   </body>

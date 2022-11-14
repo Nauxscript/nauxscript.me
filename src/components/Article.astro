@@ -1,3 +1,16 @@
 ---
+export interface Props {
+  title: string;
+  class: string,
+}
+
+const { title, class: className, ...props } = Astro.props as Props
 
 ---
+
+<div class="invisible hover:visible"  class={className} {...props} m-4>
+  {title}
+  <main>
+    <slot />
+  </main> 
+</div>

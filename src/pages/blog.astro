@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Article from '../components/Article.astro'
 
 const articles = await Astro.glob('../article/*.md');
 // console.log(articles[0].getHeadings());
+// <div set:html={article.compiledContent()}></div>
 ---
 
 <script is:inline></script>
@@ -15,6 +17,9 @@ const articles = await Astro.glob('../article/*.md');
         <h3 tabindex={index} focus-bg-red focus-h-3xl focus-b-2>
           {article.frontmatter.title}
         </h3>
+        <Article title={article.frontmatter.title} >
+          <div set:html={article.compiledContent()}></div>
+        </Article>
       ))
     }
   </main>

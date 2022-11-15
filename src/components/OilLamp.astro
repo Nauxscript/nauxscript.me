@@ -51,9 +51,58 @@
     border-radius: 0 60px;
     /* background-image: linear-gradient(135deg, black, transparent); */
   }
+  .smoke {
+    display: none;
+    filter: url(#wave) blur(2px);
+    background-color: #c2c2c2;
+    height: 60px;
+    width: 11px;
+    margin-bottom: 8px;
+    margin-left: -6px;
+  }
+  svg {
+    display: none;
+  }
 </style>
 
-<div cursor-pointer>
+<style is:global>
+  .dark .smoke {
+    display: flex !important;
+  }
+
+  .dark .light {
+    display: none !important;
+  }
+</style>
+
+<script is:inline>
+  window.onload = function () {
+    const btn = document.getElementById('toggleDarkMode');
+    console.log(document);
+    btn &&
+      btn.addEventListener('click', (e) => {
+        console.log(btn);
+        e.stopPropagation();
+        if (!document.body.classList.contains('dark')) {
+          document.body.classList.add('dark');
+        } else {
+          document.body.classList.remove('dark');
+        }
+      });
+  };
+</script>
+
+<svg>
+  <filter id="wave">
+    <feTurbulence x="0" y="0" baseFrequency="0.009" numOctaves="5" seed="2">
+      <animate attributeName="baseFrequency" dur="10s" values="0.02;0.005;0.02" repeatCount="indefinite"></animate>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" scale="30"></feDisplacementMap>
+  </filter>
+</svg>
+
+<div id="toggleDarkMode" cursor-pointer absolute top-10>
+  <div class="smoke"></div>
   <div class="light"></div>
   <div class="plate"></div>
 </div>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import MainTitle from '../components/MainTitle.astro';
 ---
 
 <style>
@@ -19,32 +20,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Hello, it's me.">
   <main lg="w-1024px m-auto p-0" w-full p-4 text-gray-700 dark:text-stone-300>
     <div font-serif lh-none font-bold>
-      <div flex flex-col text-12 m-y-8 lh-tighter>
-        <svg flex dark:hidden>
-          <defs>
-            <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" style="stop-color:#374151; stop-opacity:1"></stop>
-              <stop offset="55%" style="stop-color:#374151; stop-opacity:1"></stop>
-              <stop offset="100%" style="stop-color:#fff; stop-opacity:0"></stop>
-            </linearGradient>
-          </defs>
-          <text x="0" y="48" fill="url(#grad)">湯遒之</text>
-          <text x="0" y="80" fill="url(#grad)">Naux Tang</text>
-          <text x="0" y="112" fill="url(#grad)">' Story</text>
-        </svg>
-        <svg hidden dark:flex>
-          <defs>
-            <linearGradient id="dark-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" style="stop-color:#d1d5db; stop-opacity:1"></stop>
-              <stop offset="55%" style="stop-color:#d6d3d1; stop-opacity:1"></stop>
-              <stop offset="100%" style="stop-color:#525252; stop-opacity:0"></stop>
-            </linearGradient>
-          </defs>
-          <text x="0" y="48" fill="url(#dark-grad)">湯遒之</text>
-          <text x="0" y="80" fill="url(#dark-grad)">Naux Tang</text>
-          <text x="0" y="112" fill="url(#dark-grad)">' Story</text>
-        </svg>
-      </div>
+      <MainTitle />  
 
       <div flex flex-col text-6 mb-8>
         <span>玖陆年生人，</span>

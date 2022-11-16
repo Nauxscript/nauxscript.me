@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import MainTitle from '../components/MainTitle.astro';
+import Water from '../components/water.astro';
 ---
 
 <style>
@@ -20,34 +21,13 @@ import MainTitle from '../components/MainTitle.astro';
 <Layout title="Hello, it's me.">
   <main lg="w-1024px m-auto p-0" w-full p-4 text-gray-700 dark:text-stone-300>
     <div font-serif lh-none font-bold>
-      <MainTitle />  
-
+      <MainTitle />
       <div flex flex-col text-6 mb-8>
         <span>玖陆年生人，</span>
         <span>昌黎公所曰天下之窮處人也。</span>
         <span>贰零壹肆年求學廣東醫科大學，現事於羊城。</span>
       </div>
-
-      <div class="group" h-42 text-6 m-y-16>
-        <div absolute flex flex-col transition-all invisible opacity-0 class="group-hover:opacity-100 group-hover:visible">
-          <span>Empty your minds,</span>
-          <span>be formless,shapeless,like water.</span>
-          <span>now you put water into a cup,it becomes the cup;</span>
-          <span>you put it into a bottle,it becomes the bottle;</span>
-          <span>you put it in a teapot,it becomes the teapot.</span>
-          <span>Water can flow,or it can crash.</span>
-          <span>Be water,my friend.</span>
-        </div>
-        <div absolute flex flex-col transition-all visible opacity-100 class="group-hover:opacity-0 group-hover:invisible">
-          <span>疏雜念</span>
-          <span>身如水之虛，體似水之流。</span>
-          <span>入杯，即杯；</span>
-          <span>至瓶，成瓶；</span>
-          <span>進壺，為壺。</span>
-          <span>亦舒亦急，可湍可緩。</span>
-          <span>可謂人水合一也。</span>
-        </div>
-      </div>
+      <Water />
     </div>
   </main>
 </Layout>

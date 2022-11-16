@@ -4,6 +4,6 @@ const { href, class: className, ...props } = Astro.props;
 const isActive = href === Astro.url.pathname;
 ---
 
-<a href={href} w-full inline-block text-justify text-last-justify font-serif text-gray-300 decoration-none m-b-1 hover="text-gray-700" transition="500" class:list={[className, { 'text-gray-700': isActive }]} {...props}>
+<a href={href} w-full inline-block text-justify text-last-justify font-serif text-gray-300 decoration-none m-b-1 hover="text-neutral-700 dark:text-neutral-100" transition="500" class:list={[className, { 'text-neutral-700': isActive, 'dark:text-neutral-100': isActive, 'dark:text-neutral-400': !isActive }]} {...props}>
 	<slot />
 </a>

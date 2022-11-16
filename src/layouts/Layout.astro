@@ -20,12 +20,14 @@ const { title } = Astro.props as Props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body m-0 p-0 h-screen w-screen overflow-hidden flex flex-col class="dark">
+  <body class="dark" h-screen w-screen overflow-hidden m-0 p-0>
     <!-- <Article></Article> -->
-    <Navbar />
-    <slot flex-1 />
-    <footer w-1024px h-16 mb-8 m-x-auto relative>
-      <OilLamp />
-    </footer>
+    <div class="layout-container" m-0 p-0 h-screen w-screen overflow-hidden flex flex-col bg-stone-100 dark:bg-neutral-600>
+      <Navbar />
+      <slot flex-1 />
+      <footer w-1024px h-16 mb-8 m-x-auto relative>
+        <OilLamp />
+      </footer>
+    </div>
   </body>
 </html>

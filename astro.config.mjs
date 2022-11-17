@@ -30,7 +30,8 @@ export default defineConfig({
         ['rounded-inregular-1', { 'border-radius': '83% 34% 50% 61% / 62% 56% 65% 50%' }],
         ['rounded-inregular-2', { 'border-radius': '35% 79% 50% 45% / 69% 92% 26% 35%' }],
         ['lh-tighter', { 'line-height': '0.8' }],
-        ['text-last-justify', {'text-align-last': 'justify'}]
+        ['text-last-justify', {'text-align-last': 'justify'}],
+        ['font-serif-naux', {'font-family': 'ui-serif, Georgia, Cambria, "Times New Roman", Times, Helvetica, serif'}]
       ]
     })
   ]

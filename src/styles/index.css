@@ -9,3 +9,17 @@ body {
 .layout-container {
   transition: all .3s ease-in-out;
 }
+
+/*声明 WebFont*/
+@font-face {
+  font-family: 'ZaoZiGongFangYanSong';
+  src: url('/fonts/ZaoZiGongFangYanSong.eot');
+  src:
+    url('/fonts/ZaoZiGongFangYanSong.eot?#font-spider') format('embedded-opentype'),
+    url('/fonts/ZaoZiGongFangYanSong.woff2') format('woff2'),
+    url('/fonts//ZaoZiGongFangYanSong.woff') format('woff'),
+    url('/fonts/ZaoZiGongFangYanSong.ttf') format('truetype'),
+    url('/fonts/ZaoZiGongFangYanSong.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

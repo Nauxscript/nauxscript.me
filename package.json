@@ -8,7 +8,7 @@
     "build": "astro build --experimental-integrations && pnpm run font",
     "preview": "astro preview --experimental-integrations",
     "astro": "astro --experimental-integrations",
-    "font": "font-spider dist/**/*.html"
+    "font": "font-spider --no-backup dist/index.html"
   },
   "devDependencies": {
     "@unocss/preset-icons": "^0.45.12",

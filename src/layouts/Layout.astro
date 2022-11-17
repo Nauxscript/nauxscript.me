@@ -11,7 +11,17 @@ export interface Props {
 const { title } = Astro.props as Props;
 ---
 
-<!DOCTYPE html>
+<style is:inline>
+  /*声明 WebFont*/
+  @font-face {
+    font-family: 'ZaoZiGongFangYanSong';
+    src:
+      url('fonts/ZaoZiGongFangYanSong.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+</style>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />

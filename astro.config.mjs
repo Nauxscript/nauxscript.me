@@ -9,6 +9,9 @@ import transformerDirectives from '@unocss/transformer-directives'
 
 // https://astro.build/config
 export default defineConfig({
+  vite: {
+    base: './'
+  },
   integrations: [
     Unocss({
       presets: [
@@ -31,7 +34,8 @@ export default defineConfig({
         ['rounded-inregular-2', { 'border-radius': '35% 79% 50% 45% / 69% 92% 26% 35%' }],
         ['lh-tighter', { 'line-height': '0.8' }],
         ['text-last-justify', {'text-align-last': 'justify'}],
-        ['font-serif-naux', {'font-family': 'ui-serif, Georgia, Cambria, "Times New Roman", ZaoZiGongFangYanSong, Times, Helvetica, serif'}]
+        ['font-serif-naux', {'font-family': 'ui-serif, Georgia, Cambria, "Times New Roman", Times, Helvetica, serif'}],
+        ['font-chinese', {'font': 'normal normal normal 14px/1 ZaoZiGongFangYanSong'}]
       ]
     })
   ]

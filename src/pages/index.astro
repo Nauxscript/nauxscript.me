@@ -18,6 +18,18 @@ import Water from '../components/water.astro';
   }
 </style>
 
+<style is:inline>
+  @font-face {
+    font-family: LingDongQiCheChunTang;
+    src: url('./fonts/LingDongQiCheChunTang.ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .font-chinese {
+    font: normal normal normal 14px/1 LingDongQiCheChunTang;
+  }
+</style>
+
 <Layout title="Hello, it's me.">
   <main lg="w-1024px m-auto p-0" w-full p-4 text-gray-700 dark:text-stone-300>
     <div lh-none font-bold>

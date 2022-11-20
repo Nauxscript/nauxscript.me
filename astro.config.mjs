@@ -35,7 +35,7 @@ export default defineConfig({
         ['lh-tighter', { 'line-height': '0.8' }],
         ['text-last-justify', {'text-align-last': 'justify'}],
         ['font-serif-naux', {'font-family': 'ui-serif, Georgia, Cambria, "Times New Roman", Times, Helvetica, serif'}],
-        ['font-chinese', {'font': 'normal normal normal 14px/1 ZaoZiGongFangYanSong'}]
+        ['font-chinese', {'font': 'normal normal normal 14px/1 LingDongQiCheChunTang'}]
       ]
     })
   ]

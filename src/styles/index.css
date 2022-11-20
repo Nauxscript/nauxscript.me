@@ -6,17 +6,9 @@ body {
   transition: all .3s ease-in-out;
 }
 
-/* @font-face {
-  font-family: ZaoZiGongFangYanSong;
-  src: url('../fonts/ZaoZiGongFangYanSong.eot');
-  src: url('../fonts/ZaoZiGongFangYanSong.eot') format('embedded-opentype'), url('../fonts/ZaoZiGongFangYanSong.woff2') format('woff2'), url('../fonts/ZaoZiGongFangYanSong.woff') format('woff'), url('../fonts/ZaoZiGongFangYanSong.ttf') format('truetype'), url('../fonts/ZaoZiGongFangYanSong.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
-} */
-
 @font-face {
-  font-family: ZaoZiGongFangYanSong;
-  src: url('../fonts/ZaoZiGongFangYanSong.ttf');
+  font-family: LingDongQiCheChunTang;
+  src: url('../fonts/LingDongQiCheChunTang.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

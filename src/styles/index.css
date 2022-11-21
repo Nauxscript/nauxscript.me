@@ -7,8 +7,8 @@ body {
 }
 
 @font-face {
-  font-family: LingDongQiCheChunTang;
-  src: url('../fonts/LingDongQiCheChunTang.ttf') format('truetype');
+  font-family: SourceHanSerifHK;
+  src: url('../fonts/SourceHanSerifHK-VF.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

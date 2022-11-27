@@ -4,6 +4,9 @@ import 'unocss-hmr-fix';
 import Navbar from '../components/Navbar.astro';
 import OilLamp from '../components/OilLamp.astro';
 import '../styles/index.css';
+if (import.meta.env.MODE === 'development')
+  import('../styles/font.css');  
+
 export interface Props {
   title: string;
 }
@@ -23,7 +26,9 @@ const { title } = Astro.props as Props;
     <!-- <Article></Article> -->
     <div class="layout-container" m-0 p-0 h-screen w-screen overflow-hidden flex flex-col bg-stone-100 dark:bg-neutral-600>
       <Navbar />
-      <slot flex-1 />
+      <div class="main-container" flex="col" lg="w-1024px m-auto p-0">
+        <slot />
+      </div>
       <footer w-1024px h-16 mb-8 m-x-auto pos="relative">
         <OilLamp />
       </footer>

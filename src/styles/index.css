@@ -5,10 +5,3 @@ body {
 .layout-container {
   transition: all .3s ease-in-out;
 }
-
-@font-face {
-  font-family: SourceHanSerifHK;
-  src: url('../fonts/SourceHanSerifHK-Bold.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}

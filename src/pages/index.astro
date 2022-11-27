@@ -18,17 +18,19 @@ import Water from '../components/water.astro';
   }
 </style>
 
-<style is:inline>
-  @font-face {
-    font-family: SourceHanSerifHK;
-    src: url('./fonts/SourceHanSerifHK-Bold.ttf');
-    font-weight: normal;
-    font-style: normal;
-  }
-  .font-chinese {
-    font-family: SourceHanSerifHK;
-  }
-</style>
+{
+  import.meta.env.MODE === 'production' && (<style is:inline>
+    @font-face {
+      font-family: SourceHanSerifHK;
+      src: url('./fonts/SourceHanSerifHK-Bold.ttf');
+      font-weight: normal;
+      font-style: normal;
+    }
+    .font-chinese {
+      font-family: SourceHanSerifHK !important;
+    }
+  </style>)
+}
 
 <Layout title="Hello, it's me.">
   <main flex-1 w-full text-gray-700 dark:text-stone-300>

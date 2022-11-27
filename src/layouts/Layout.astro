@@ -4,8 +4,7 @@ import 'unocss-hmr-fix';
 import Navbar from '../components/Navbar.astro';
 import OilLamp from '../components/OilLamp.astro';
 import '../styles/index.css';
-if (import.meta.env.MODE === 'development')
-  import('../styles/font.css');  
+import '../styles/font.css';
 
 export interface Props {
   title: string;

@@ -20,6 +20,6 @@ This is my blog repo.
   - 🌟 Syntax Highlighting
   - 🐈‍⬛ Dark Mode
   - 🎨 Dynamic Background: d5.js maybe a nice try!
-  - 🈚 Fonts
+  - 🈚 Custom Chinese Fonts
 - File Route
 - Static Assets

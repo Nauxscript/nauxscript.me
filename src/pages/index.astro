@@ -1,10 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import MainTitle from '../components/MainTitle.astro';
-import Water from '../components/water.astro';
+import Water from '../components/Water.astro';
 ---
 
-<style>
+<!-- <style>
   .water span:nth-child(odd) {
     display: none;
   }
@@ -16,7 +16,7 @@ import Water from '../components/water.astro';
   .water:hover span:nth-child(odd) {
     display: block;
   }
-</style>
+</style> -->
 
 {
   import.meta.env.MODE === 'production' && (<style is:inline>
@@ -40,6 +40,7 @@ import Water from '../components/water.astro';
         <span>玖陸年生人，</span>
         <span>昌黎公所曰天下之窮處人也。</span>
         <span>貳零壹肆年求學廣東醫科大學，現事於羊城。</span>
+        <a href=""></a>
       </div>
       <Water />
     </div>

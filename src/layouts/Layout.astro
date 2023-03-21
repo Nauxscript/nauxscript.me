@@ -2,6 +2,7 @@
 // import Article from '../components/Article.astro';
 import Navbar from '../components/Navbar.astro';
 import OilLamp from '../components/OilLamp.astro';
+import Water from '../components/Water.astro'
 import '../styles/index.css';
 import '../styles/font.css';
 
@@ -26,6 +27,7 @@ const { title } = Astro.props as Props;
       <Navbar />
       <div class="main-container" flex="col" lg="w-1024px m-auto p-0">
         <slot />
+        <Water />
       </div>
       <footer w-1024px h-16 mb-8 m-x-auto pos="relative">
         <OilLamp />

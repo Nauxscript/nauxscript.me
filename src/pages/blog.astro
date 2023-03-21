@@ -7,8 +7,6 @@ const articles = await Astro.glob('../article/*.md');
 // <div set:html={article.compiledContent()}></div>
 ---
 
-<script is:inline></script>
-
 <Layout title="Blog">
   <main>
     <h2 bg-yellow-200>this is blog page, there will be put the blog content</h2>

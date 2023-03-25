@@ -1,3 +1,17 @@
+<svg id="filters">
+  <defs>
+    <filter id="threshold">
+      <feColorMatrix
+        in="SourceGraphic"
+        type="matrix"
+        values="1 0 0 0 0
+									0 1 0 0 0
+									0 0 1 0 0
+									0 0 0 240 -110"></feColorMatrix>
+    </filter>
+  </defs>
+</svg>
+
 <div id="group" class="group" h-42 text-6 m-y-16 font-serif-naux>
   <div id="en" absolute flex flex-col>
     <span>Empty your minds,</span>
@@ -20,19 +34,7 @@
   </div>
 </div>
 
-<svg id="filters">
-  <defs>
-    <filter id="threshold">
-      <feColorMatrix
-        in="SourceGraphic"
-        type="matrix"
-        values="1 0 0 0 0
-									0 1 0 0 0
-									0 0 1 0 0
-									0 0 0 240 -110"></feColorMatrix>
-    </filter>
-  </defs>
-</svg>
+
 
 <script is:inline>
   const text1 = document.getElementById("cn");

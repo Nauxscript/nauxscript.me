@@ -4,10 +4,7 @@
       <feColorMatrix
         in="SourceGraphic"
         type="matrix"
-        values="1 0 0 0 0
-									0 1 0 0 0
-									0 0 1 0 0
-									0 0 0 240 -110"></feColorMatrix>
+        values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 240 -120"></feColorMatrix>
     </filter>
   </defs>
 </svg>
@@ -35,7 +32,15 @@
 </div>
 
 <script is:inline>
-  let text1, text2, container;
+  let text1, text2, container, filter;
+  var fecolorMatrix = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "fecolorMatrix"
+  );
+  // let a = 120;
+  let a = 30;
+  fecolorMatrix.setAttribute("type", "matrix");
+  fecolorMatrix.setAttribute("in", "SourceGraphic");
 
   const morphTime = 1;
   // const cooldownTime = 0.25;
@@ -98,18 +103,24 @@
   }
 
   function setValue(val) {
-    if (val === undefined) {
+    if (val === 0) {
       container.style.filter = "none";
       return;
     }
-    container.style.filter = `url(#threshold) blur(0.${val}px)`;
+    const valStr = `1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 ${val} -${parseInt(
+      val / 2
+    )}`;
+    container.style.filter = `url(#threshold) blur(0.${parseInt(val / 40)}px)`;
+    fecolorMatrix.setAttribute("values", valStr);
+    console.log(valStr);
+    filter.innerHTML = fecolorMatrix.outerHTML;
   }
 
-  let pxVal = 0;
+  let pxVal = 240;
 
   function beforeAnimate(cb) {
     return function loop() {
-      if (pxVal <= 6) {
+      if (pxVal <= 240) {
         setValue(pxVal);
         pxVal++;
         requestAnimationFrame(loop);
@@ -126,17 +137,17 @@
         pxVal--;
         requestAnimationFrame(loop);
       } else {
-        setValue();
+        setValue(pxVal);
         if (cb && typeof cb === "function") cb();
       }
     };
   }
   window.onload = function () {
-    
     text1 = document.getElementById("cn");
     text2 = document.getElementById("en");
     container = document.getElementById("group");
-    console.log('load')
+    filter = document.getElementById("threshold");
+    console.log("load");
     if (text1 && text2 && container) {
       // initAnimation(text1, text2, container)
       container.addEventListener("mouseenter", gogo);

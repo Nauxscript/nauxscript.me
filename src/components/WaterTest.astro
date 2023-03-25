@@ -1,0 +1,248 @@
+<svg id="filters">
+  <defs>
+    <filter id="threshold">
+      <feColorMatrix
+        in="SourceGraphic"
+        type="matrix"
+        values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 240 -120"></feColorMatrix>
+    </filter>
+  </defs>
+</svg>
+
+<button id="trigger"> gogogo</button>
+<button id="goBlurBtn"> goBlur</button>
+<button id="goClearBtn"> goClear</button>
+
+<div id="container" class="container">
+  <p id="upperText" class="title">Crazy Effect</p>
+  <p id="lowerText" class="title">Effect Crazy</p>
+</div>
+
+<script is:inline>
+  const useFilter = (filter, container, max = 241) => {
+    const callBacks = {
+      stopBlur: undefined,
+      stopClear: undefined,
+    };
+    let curr = 1;
+    let forward = true;
+    const step = 10;
+    const fecolorMatrix = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "fecolorMatrix"
+    );
+    fecolorMatrix.setAttribute("type", "matrix");
+    fecolorMatrix.setAttribute("in", "SourceGraphic");
+
+    const setFilter = (value) => {
+      const str = `1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 ${value} -${parseInt(
+        value / 2
+      )}`;
+      fecolorMatrix.setAttribute("values", str);
+      filter.innerHTML = fecolorMatrix.outerHTML;
+      container.style.filter = `url(#threshold) blur(0.${parseInt(
+        value / 40
+      )}px)`;
+      console.log(str);
+    };
+
+    const goBlur = () => {
+      forward = true;
+      let pRes;
+      const p = new Promise((resolve) => {
+        pRes = resolve;
+      });
+      function _blur() {
+        setFilter(curr);
+        if (curr <= max) {
+          console.log("go _blur");
+          curr += step;
+          requestAnimationFrame(_blur);
+        } else {
+          console.log("stop _blur");
+          pRes(true);
+          callBacks.stopBlur = undefined
+          cancelAnimationFrame(_blur);
+        }
+      }
+      callBacks.stopBlur = () => {
+        console.log('stop blur')
+        cancelAnimationFrame(_blur);
+      };
+      _blur();
+      return p;
+    };
+
+    const goClear = () => {
+      forward = false;
+      let pRes;
+      const p = new Promise((resolve) => {
+        pRes = resolve;
+      });
+      function _clear() {
+        setFilter(curr);
+        if (curr > 1) {
+          console.log("go _clear");
+          curr -= step;
+          requestAnimationFrame(_clear);
+        } else {
+          setFilter(curr);
+          console.log("stop _clear");
+          pRes(true);
+          callBacks.stopClear = undefined
+          cancelAnimationFrame(_clear);
+        }
+      }
+      callBacks.stopClear = () => {
+        console.log('stop clear')
+        cancelAnimationFrame(_clear);
+      };
+      _clear();
+      return p;
+    };
+
+    return {
+      goBlur,
+      goClear,
+      callBacks
+    };
+  };
+
+  const useflowingTransition = (upperText, lowerText) => {
+    const morphTime = 1;
+    let time = new Date();
+    let morph = 0;
+    let forward = true;
+    let s = 0;
+    running = false;
+    callBacks = {
+      stop: undefined
+    }
+
+    function setMorph(fraction) {
+      console.log("setMorph");
+      lowerText.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+      lowerText.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+
+      fraction = 1 - fraction;
+      upperText.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+      upperText.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+    }
+
+    const switchText = () => ([upperText, lowerText] = [lowerText, upperText]);
+
+    const startAnimate = async () => {
+      let pRes;
+      const p = new Promise((resolve) => {
+        pRes = resolve;
+      });
+
+      running = true;
+
+      let time = new Date();
+      morph = 0;
+      function movement() {
+        console.log("movement");
+        if (morph > 1) {
+          console.log("end and call goClear");
+          switchText();
+          pRes(true);
+          running = false;
+          callBacks.stop = undefined
+          cancelAnimationFrame(movement);
+          return;
+        }
+        let newTime = new Date();
+        let dt = (newTime - time) / 1000;
+        time = newTime;
+        morph += dt;
+        let fraction = morph / morphTime;
+        if (forward) s = fraction;
+        if (!forward) s = 1 - fraction;
+        setMorph(s);
+        requestAnimationFrame(movement);
+      };
+
+      movement();
+      callBacks.stop = () => {
+        console.log('stop animate')
+        cancelAnimationFrame(movement);
+      }
+      return p;
+    };
+
+    const getState = () => {
+      return running;
+    };
+
+    return {
+      startAnimate,
+      getState,
+      callBacks
+    };
+  };
+
+  const init = () => {
+    const filter = document.getElementById("threshold");
+    const container = document.getElementById("container");
+    const upperText = document.getElementById("upperText");
+    const lowerText = document.getElementById("lowerText");
+
+    const goBlurBtn = document.getElementById("goBlurBtn");
+    const goClearBtn = document.getElementById("goClearBtn");
+    const { goBlur, goClear, callBacks } = useFilter(filter, container);
+    goBlurBtn.addEventListener("click", goBlur);
+    goClearBtn.addEventListener("click", goClear);
+
+    const { startAnimate, getState, callBacks: animateCallbacks } = useflowingTransition(
+      upperText,
+      lowerText
+    );
+
+    const button = document.getElementById("trigger");
+    button.addEventListener("click", async () => {
+      if (getState()) {
+        console.log('running')
+        callBacks.stopBlur && callBacks.stopBlur()
+        callBacks.stopClear && callBacks.stopClear()
+        animateCallbacks.stop && animateCallbacks.stop()
+        return
+      }
+      await goBlur();
+      await startAnimate();
+      goClear();
+    });
+  };
+  const _onload = window.onload;
+  window.onload = function () {
+    _onload && _onload();
+    init();
+  };
+</script>
+
+<style>
+  .container {
+    position: absolute;
+    /* filter: url(#threshold) blur(0.6px); */
+    filter: none;
+    width: 100%;
+    height: 200px;
+    opacity: 0.8;
+  }
+
+  #upperText,
+  #lowerText {
+    position: absolute;
+    display: inline-block;
+  }
+
+  #lowerText {
+    opacity: 0;
+  }
+
+  .title {
+    font-family: monospace;
+    font-size: 80pt;
+    font-weight: bold;
+  }
+</style>

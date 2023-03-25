@@ -33,3 +33,53 @@
     <span>可謂人水合一也。</span>
   </div>
 </div>
+
+<style>
+  #group {
+    /* filter: url(#threshold) blur(0.6px); */
+    filter: none;
+  }
+
+  #en {
+    opacity: 0;
+  }
+
+  #cn {
+    /* opacity: 1; */
+    /* transition: all .3s; */
+  }
+
+  @keyframes tran {
+    0% {
+      filter: url(#threshold) blur(-1px);
+    }
+
+    /* 50% {
+    filter: url(#threshold) blur(10px);
+  } */
+
+    100% {
+      filter: url(#threshold) blur(100px);
+    }
+  }
+
+  #container {
+    position: absolute;
+    margin: auto;
+    width: 100vw;
+    height: 80pt;
+    top: 0;
+    bottom: 0;
+    filter: url(#threshold) blur(0.6px);
+  }
+
+  #text1,
+  #text2 {
+    position: absolute;
+    width: 100%;
+    display: inline-block;
+    font-size: 80pt;
+    text-align: center;
+    user-select: none;
+  }
+</style>

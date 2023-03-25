@@ -34,12 +34,8 @@
   </div>
 </div>
 
-
-
 <script is:inline>
-  const text1 = document.getElementById("cn");
-  const text2 = document.getElementById("en");
-  const container = document.getElementById("group");
+  let text1, text2, container;
 
   const morphTime = 1;
   // const cooldownTime = 0.25;
@@ -69,13 +65,13 @@
       morph = 0;
       forward = false;
       const _movement = beforeAnimate(movement);
-      _movement()
+      _movement();
     } else if (s <= 0) {
       console.log("222");
       morph = 0;
       forward = true;
       const _movement = beforeAnimate(movement);
-      _movement()
+      _movement();
     } else {
       console.log("333");
       forward = !forward;
@@ -85,11 +81,11 @@
 
   function movement() {
     if (morph > 1) {
-      console.log('end');
-      const ending = afterAnimate()
-      ending()
-      return 
-    };
+      console.log("end");
+      const ending = afterAnimate();
+      ending();
+      return;
+    }
     let newTime = new Date();
     let dt = (newTime - time) / 1000;
     time = newTime;
@@ -103,10 +99,10 @@
 
   function setValue(val) {
     if (val === undefined) {
-      container.style.filter = 'none'
-      return
+      container.style.filter = "none";
+      return;
     }
-    container.style.filter = `url(#threshold) blur(0.${val}px)`
+    container.style.filter = `url(#threshold) blur(0.${val}px)`;
   }
 
   let pxVal = 0;
@@ -130,14 +126,23 @@
         pxVal--;
         requestAnimationFrame(loop);
       } else {
-        setValue()
+        setValue();
         if (cb && typeof cb === "function") cb();
       }
     };
   }
-
-  container.addEventListener("mouseenter", gogo);
-  container.addEventListener("mouseleave", gogo);
+  window.onload = function () {
+    
+    text1 = document.getElementById("cn");
+    text2 = document.getElementById("en");
+    container = document.getElementById("group");
+    console.log('load')
+    if (text1 && text2 && container) {
+      // initAnimation(text1, text2, container)
+      container.addEventListener("mouseenter", gogo);
+      container.addEventListener("mouseleave", gogo);
+    }
+  };
 </script>
 
 <style>

@@ -84,7 +84,9 @@
 </style>
 
 <script is:inline>
+  const _windowLoad = window.onload
   window.onload = function () {
+    _windowLoad && _windowLoad()
     const btn = document.getElementById('toggleDarkMode');
     btn &&
       btn.addEventListener('click', (e) => {

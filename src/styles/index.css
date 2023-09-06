@@ -5,3 +5,7 @@ body {
 .layout-container {
   transition: all .3s ease-in-out;
 }
+
+a, a:link, a:visited, a:active {
+  text-decoration: none;
+}

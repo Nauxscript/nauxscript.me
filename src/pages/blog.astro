@@ -1,26 +1,34 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Article from '../components/Article.astro'
+import { ViewTransitions } from 'astro:transitions';
 
-const articles = await Astro.glob('../article/*.md');
 // console.log(articles[0].getHeadings());
 // <div set:html={article.compiledContent()}></div>
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog')
 ---
 
 <Layout title="Blog">
   <main>
     <h2 bg-yellow-200>this is blog page, there will be put the blog content</h2>
     {
-      articles.map((article, index) => (
-        <h3 tabindex={index} focus-bg-red focus-h-3xl focus-b-2>
-          {article.frontmatter.title}
+      posts.map((article, index) => (
+        <h3 transition:name="article-title" text-xl>
+          <a transition:name="article-title" href={`/article/${article.slug}`}>{article.data.title}</a>
         </h3>
-        <Article title={article.frontmatter.title} >
-          <div set:html={article.compiledContent()}></div>
-        </Article>
+
+        // <h3 transition:name="article-title" text-xl>{article.frontmatter.title}</h3>
+        // <Article title={article.frontmatter.title} >
+        //   <div set:html={article.compiledContent()}></div>
+        // </Article>
       ))
     }
+    <div h-20 w-20 flex bg-black rounded-full transition:name="test-btn" transition absolute top-0>
+      <a href="/" flex h-full w-full></a>
+    </div>
   </main>
+  <ViewTransitions />
 </Layout>
 
 <style>

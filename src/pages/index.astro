@@ -3,35 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import MainTitle from '../components/MainTitle.astro';
 // import Water from '../components/Water.astro';
 import WaterTest from '../components/WaterTest.astro';
+import { ViewTransitions } from 'astro:transitions';
 ---
-
-<!-- <style>
-  .water span:nth-child(odd) {
-    display: none;
-  }
-
-  .water:hover span:nth-child(even) {
-    display: none;
-  }
-
-  .water:hover span:nth-child(odd) {
-    display: block;
-  }
-</style> -->
-
-<!-- {
-  import.meta.env.MODE === 'production' && (<style is:inline>
-    @font-face {
-      font-family: SourceHanSerif;
-      src: url('./fonts/SourceHanSerifTC-Bold.ttf');
-      font-weight: normal;
-      font-style: normal;
-    }
-    .font-chinese {
-      font-family: SourceHanSerif !important;
-    }
-  </style>)
-} -->
 
 <style is:inline>
   @font-face {
@@ -55,8 +28,12 @@ import WaterTest from '../components/WaterTest.astro';
         <span>貳零壹肆年求學廣東醫科大學，現事於羊城。</span>
         <a href=""></a>
       </div>
+      <div h-20 w-20 flex bg-black transition:name="test-btn" transition>
+        <a href="/blog" flex h-full w-full></a>
+      </div>
       <!-- <WaterTest /> -->
       <!-- <Water /> -->
     </div>
   </main>
+  <ViewTransitions />
 </Layout>

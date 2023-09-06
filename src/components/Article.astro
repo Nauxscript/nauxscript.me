@@ -9,7 +9,7 @@ const { title, class: className, ...props } = Astro.props as Props
 ---
 
 <div class="invisible hover:visible"  class={className} {...props} m-4>
-  {title}
+  <h3 transition:name="article-title">{title}</h3>
   <main>
     <slot />
   </main> 

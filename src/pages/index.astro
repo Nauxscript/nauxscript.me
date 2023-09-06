@@ -19,7 +19,7 @@ import WaterTest from '../components/WaterTest.astro';
   }
 </style> -->
 
-{
+<!-- {
   import.meta.env.MODE === 'production' && (<style is:inline>
     @font-face {
       font-family: SourceHanSerif;
@@ -31,7 +31,19 @@ import WaterTest from '../components/WaterTest.astro';
       font-family: SourceHanSerif !important;
     }
   </style>)
-}
+} -->
+
+<style is:inline>
+  @font-face {
+    font-family: SourceHanSerif;
+    src: url('/fonts/SourceHanSerifTC-Bold.ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .font-chinese {
+    font-family: SourceHanSerif !important;
+  }
+</style>
 
 <Layout title="Hello, it's me.">
   <main flex-1 w-full text-gray-700 dark:text-stone-300>

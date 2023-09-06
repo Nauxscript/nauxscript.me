@@ -83,21 +83,16 @@
   }
 </style>
 
-<script is:inline>
-  const _windowLoad = window.onload
-  window.onload = function () {
-    _windowLoad && _windowLoad()
-    const btn = document.getElementById('toggleDarkMode');
-    btn &&
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (!document.body.classList.contains('dark')) {
-          document.body.classList.add('dark');
-        } else {
-          document.body.classList.remove('dark');
-        }
-      });
-  };
+<script>
+const btn = document.getElementById('toggleDarkMode')
+btn?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (!document.body.classList.contains('dark')) {
+    document.body.classList.add('dark');
+  } else {
+    document.body.classList.remove('dark');
+  }
+});
 </script>
 
 <svg>
@@ -109,7 +104,7 @@
   </filter>
 </svg>
 
-<div id="toggleDarkMode" cursor-pointer absolute right-3>
+<div id="toggleDarkMode" cursor-pointer absolute right-3 transition:persist>
   <div class="smoke" absolute bottom-4></div>
   <div class="light" absolute bottom-4></div>
   <div class="plate"></div>

@@ -1,11 +1,14 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content'
 import Layout from '../../layouts/Layout.astro';
 import { ViewTransitions } from 'astro:transitions';
 
 type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props
+
+console.log(post.id)
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -15,11 +18,14 @@ export async function getStaticPaths() {
 	}));
 }
 
+
+
 const {Content} = await post.render()
 
 ---
 
 <Layout title={post.data.title}>
+	<h1 transition:name={`article-title-${post.id}`} transition bg-black text-white>{post.data.title}</h1>
   <Content></Content> 
   <ViewTransitions /> 
 </Layout>

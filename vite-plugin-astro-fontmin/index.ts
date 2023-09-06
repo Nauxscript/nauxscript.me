@@ -2,6 +2,8 @@ import { walk } from 'estree-walker'
 import { parse } from 'node-html-parser'
 import type {  PluginOption} from 'vite'
 import Fontmin from 'fontmin'
+import { rmdir } from 'fs'
+import { resolve as pathResolve } from 'path'
 
 let allText = ''
 
@@ -16,20 +18,19 @@ export function vitePluginAstroFontmin(): PluginOption {
       const ast = this.parse(code)
       walk(ast as any, {
         enter(node) {
-    
           if (node.type === 'TemplateElement') {
             allText += parse(node.value.raw).rawText          
           }
         },
       }) 
     },
-    async buildEnd() { 
+    async closeBundle() { 
       if (!allText.trim()) {
-        console.log('[warning] minimize font done')
+        console.log('[warning] minimize font fail, have no valid text')
         return
       }
       const fontmin = new Fontmin()
-      fontmin.src('fonts/SourceHanSerifTC-Bold.ttf')
+      fontmin.src('public/fonts/SourceHanSerifTC-Bold.ttf')
       fontmin.use(Fontmin.glyph({
         text: allText,
       }))

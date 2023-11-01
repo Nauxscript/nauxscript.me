@@ -1,111 +1,84 @@
-<style>
-  .light {
-    z-index: 2;
-    width: 15px;
-    height: 30px;
-    background: #ffad00;
-    border-radius: 8px 8px 8px 8px / 20px 20px 8px 8px;
-    box-shadow: 0px 0px 20px 0px #ffad00;
-    animation: flame-twirl 15s ease infinite, glow 2s ease infinite;
-    visibility: visible;
-    transition: all .3s ease-in-out;
-    left: -2px;
-  }
-  @keyframes flame-twirl {
-    0%,
-    22%,
-    49%,
-    62%,
-    81%,
-    100% {
-      border-radius: 2px 14px 8px 8px / 20px 20px 8px 8px;
-    }
-    14%,
-    32%,
-    56%,
-    70%,
-    89% {
-      border-radius: 14px 2px 8px 8px / 20px 20px 8px 8px;
-    }
-  }
-
-  @keyframes glow {
-    0%,
-    30%,
-    60%,
-    80%,
-    100% {
-      box-shadow: 0 0 20px 0 #ffad00;
-    }
-    20%,
-    50%,
-    70% {
-      box-shadow: 0 0 22px 0 #ffad00;
-    }
-  }
-  .plate {
-    margin-top: -35px;
-    margin-left: 10px;
-    z-index: 1;
-    width: 45px;
-    height: 45px;
-    border-bottom: 4px solid gray;
-    transform: rotateX(-135deg) rotateZ(160deg);
-    border-radius: 0 60px;
-    /* background-image: linear-gradient(135deg, black, transparent); */
-  }
-  .smoke {
-    visibility: hidden;
-    filter: url(#wave) blur(2px);
-    background-color: #c2c2c2;
-    height: 0;
-    width: 11px;
-    margin-bottom: 8px;
-    margin-left: -6px;
-  }
-  svg {
-    display: none;
-  }
-</style>
-
-<style is:global>
-  .dark .smoke {
-    visibility: visible;
-    height: 60px;
-    transition: all 5s .4s;
-  }
-
-  .dark .light {
-    visibility: hidden;
-    height: 2px;
-    width: 4px;
-    left: 2px;
-  }
-</style>
-
-<script>
-const btn = document.getElementById('toggleDarkMode')
-btn?.addEventListener('click', (e) => {
-  e.stopPropagation();
-  if (!document.body.classList.contains('dark')) {
-    document.body.classList.add('dark');
-  } else {
-    document.body.classList.remove('dark');
-  }
-});
-</script>
-
-<svg>
-  <filter id="wave">
-    <feTurbulence x="0" y="0" baseFrequency="0.009" numOctaves="5" seed="2">
-      <animate attributeName="baseFrequency" dur="10s" values="0.02;0.005;0.02" repeatCount="indefinite"></animate>
-    </feTurbulence>
+<svg width="0">
+  <filter id="filter">
+    <feTurbulence
+      id="turbulence"
+      type="fractalNoise"
+      baseFrequency=".03"
+      numOctaves="20"></feTurbulence>
     <feDisplacementMap in="SourceGraphic" scale="30"></feDisplacementMap>
   </filter>
 </svg>
 
-<div id="toggleDarkMode" cursor-pointer absolute right-3 transition:persist>
-  <div class="smoke" absolute bottom-4></div>
-  <div class="light" absolute bottom-4></div>
-  <div class="plate"></div>
+<div
+  class="oil-lamp-container"
+  absolute
+  right-3
+  bottom-0
+  h-1000px
+  w-1000px
+  flex
+>
+  <div class="oil-lamp" absolute></div>
 </div>
+
+<style>
+  .oil-lamp-container {
+    /* filter: url("#filter"); */
+
+    filter: url("#filter");
+  }
+
+  .oil-lamp {
+    height: 100px;
+    width: 2px;
+    background: linear-gradient(#fff, #999, #ddd, #888);
+    filter: blur(2px);
+    bottom: 0;
+  }
+</style>
+
+<script>
+  const filter = document.querySelector("#turbulence");
+  // let frames = 1;
+  // let rad = Math.PI / 180;
+  // let bfx, bfy;
+
+  // function freqAnimation() {
+  //     frames += .4
+
+  //     bfx = 0.03;
+  //     bfy = 0.03;
+
+  //     bfx += 0.005 * Math.cos(frames * rad);
+  //     bfy += 0.005 * Math.sin(frames * rad);
+  //     console.log(bfx, bfy);
+  //     const bf = bfx.toString() + " " + bfy.toString();
+  //     filter?.setAttributeNS(null, "baseFrequency", bf);
+
+  //     window.requestAnimationFrame(freqAnimation);
+  // }
+
+  // window.requestAnimationFrame(freqAnimation);
+
+  let frames = 1;
+  let rad = Math.PI / 180;
+  let bfx, bfy;
+
+  function freqAnimation() {
+    frames += 0.4;
+
+    if (frames <= 360 / 0.4) {
+      bfx = 0.03;
+      bfy = 0.03;
+
+      bfx += 0.005 * Math.cos(frames * rad);
+      bfy += 0.005 * Math.sin(frames * rad);
+
+      const bf = bfx.toString() + " " + bfy.toString();
+
+      window.requestAnimationFrame(freqAnimation);
+    }
+  }
+
+  window.requestAnimationFrame(freqAnimation);
+</script>

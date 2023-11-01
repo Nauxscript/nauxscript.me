@@ -1,84 +1,284 @@
-<svg width="0">
-  <filter id="filter">
-    <feTurbulence
-      id="turbulence"
-      type="fractalNoise"
-      baseFrequency=".03"
-      numOctaves="20"></feTurbulence>
-    <feDisplacementMap in="SourceGraphic" scale="30"></feDisplacementMap>
-  </filter>
-</svg>
-
-<div
-  class="oil-lamp-container"
-  absolute
-  right-3
-  bottom-0
-  h-1000px
-  w-1000px
-  flex
->
-  <div class="oil-lamp" absolute></div>
-</div>
-
 <style>
-  .oil-lamp-container {
-    /* filter: url("#filter"); */
-
-    filter: url("#filter");
+  .light {
+    z-index: 2;
+    width: 15px;
+    height: 30px;
+    background: #ffad00;
+    border-radius: 8px 8px 8px 8px / 20px 20px 8px 8px;
+    box-shadow: 0px 0px 20px 0px #ffad00;
+    animation: flame-twirl 15s ease infinite, glow 2s ease infinite;
+    visibility: visible;
+    transition: all .3s ease-in-out;
+    bottom: 5px;
+    /* left: -2px; */
+  }
+  @keyframes flame-twirl {
+    0%,
+    22%,
+    49%,
+    62%,
+    81%,
+    100% {
+      border-radius: 2px 14px 8px 8px / 20px 20px 8px 8px;
+    }
+    14%,
+    32%,
+    56%,
+    70%,
+    89% {
+      border-radius: 14px 2px 8px 8px / 20px 20px 8px 8px;
+    }
   }
 
-  .oil-lamp {
-    height: 100px;
-    width: 2px;
-    background: linear-gradient(#fff, #999, #ddd, #888);
+  @keyframes glow {
+    0%,
+    30%,
+    60%,
+    80%,
+    100% {
+      box-shadow: 0 0 20px 0 #ffad00;
+    }
+    20%,
+    50%,
+    70% {
+      box-shadow: 0 0 22px 0 #ffad00;
+    }
+  }
+  .plate {
+    margin-top: -35px;
+    margin-left: 10px;
+    z-index: 1;
+    width: 45px;
+    height: 45px;
+    bottom: -10px;
+    border-bottom: 4px solid gray;
+    transform: rotateX(-135deg) rotateZ(160deg);
+    border-radius: 0 60px;
+  }
+  
+  .smoke-container {
+    visibility: hidden;
+    left: 32px;
+    /* bottom: -50px; */
+    bottom: 8px;
+    height: 58px;
+    width: 20px;
+    filter: url("#filter");
+    transform: scale(-1);
+    opacity: 0;
+  }
+  .smoke {
+    /* background: linear-gradient(#fff, #999, #ddd, #888); */
+    background-color: #000;
     filter: blur(2px);
+    width: 2px;
+    height: 100%;
     bottom: 0;
+  }
+
+  svg {
+    display: none;
+  }
+
+</style>
+
+<style is:global>
+  .dark .smoke-container {
+    visibility: visible !important;
+    /* animation: heightChange 5s .4s forwards, bottomChange 5s 5.4s forwards; */
+  }
+
+  @keyframes heightChange {
+    0% {
+      height: 0;
+    }
+    100% {
+      height: 60px;
+    }
+  }
+
+  @keyframes bottomChange {
+    0% {
+      bottom: 14px;
+    }
+    100% {
+      bottom: 80px;
+    }
+  }
+
+
+  .dark .light {
+    visibility: hidden !important;
+    height: 2px !important;
+    width: 4px !important;
+    left: 50px !important;
   }
 </style>
 
 <script>
-  const filter = document.querySelector("#turbulence");
-  // let frames = 1;
-  // let rad = Math.PI / 180;
-  // let bfx, bfy;
+const useSmokeEffect = () => {
+  const turbulence = document.querySelector("#turbulence");
+  const smokeContainer = document.getElementById('smoke-container'); 
 
-  // function freqAnimation() {
-  //     frames += .4
-
-  //     bfx = 0.03;
-  //     bfy = 0.03;
-
-  //     bfx += 0.005 * Math.cos(frames * rad);
-  //     bfy += 0.005 * Math.sin(frames * rad);
-  //     console.log(bfx, bfy);
-  //     const bf = bfx.toString() + " " + bfy.toString();
-  //     filter?.setAttributeNS(null, "baseFrequency", bf);
-
-  //     window.requestAnimationFrame(freqAnimation);
-  // }
-
-  // window.requestAnimationFrame(freqAnimation);
-
-  let frames = 1;
-  let rad = Math.PI / 180;
-  let bfx, bfy;
-
-  function freqAnimation() {
-    frames += 0.4;
-
-    if (frames <= 360 / 0.4) {
-      bfx = 0.03;
-      bfy = 0.03;
-
-      bfx += 0.005 * Math.cos(frames * rad);
-      bfy += 0.005 * Math.sin(frames * rad);
-
-      const bf = bfx.toString() + " " + bfy.toString();
-
-      window.requestAnimationFrame(freqAnimation);
-    }
+  if (!turbulence || !smokeContainer) {
+    console.error('animation elements do not exist');
+    throw new Error('animation elements do not exist')
   }
 
-  window.requestAnimationFrame(freqAnimation);
+  const rad = Math.PI / 180;
+  let frames = 96;
+  let baseFrequency = 0.03
+  let opacity = 0
+
+  const smokeAnimate = () => {
+    frames += .3
+    baseFrequency = 0.03
+    baseFrequency += 0.03 * Math.sin(frames * rad)   
+    turbulence.setAttributeNS(null, "baseFrequency", `${baseFrequency} ${baseFrequency}`);
+    if (baseFrequency < 0.000001) return
+    window.requestAnimationFrame(smokeAnimate); 
+  } 
+
+  function fadeIn() {
+    if (opacity >= 0.5) {
+      console.log('show');
+      return;
+    }
+    smokeContainer!.style.opacity = opacity.toString();
+    opacity += 0.001;
+    window.requestAnimationFrame(fadeIn)
+  }
+
+  function fadeOut() {
+    if (opacity <= 0.00003) {
+      console.log('hide')
+      opacity = 0     
+      smokeContainer!.style.opacity = '0';
+      return;
+    }
+    smokeContainer!.style.opacity = opacity.toString();
+    opacity -= 0.01;
+    window.requestAnimationFrame(fadeOut) 
+  }
+
+  
+  const lightUp = () => {
+    // reset
+    frames = 96;
+    baseFrequency = 0.03
+    opacity = 0
+
+    smokeContainer.style.opacity = '0';
+    turbulence.setAttributeNS(null, "baseFrequency", `${baseFrequency}`);
+  }
+
+  const extinguish = () => {
+    fadeIn()
+    smokeAnimate()
+    setTimeout(() => fadeOut(), 10000) 
+  }
+
+  return {
+    lightUp,
+    extinguish
+  }
+
+}
+
+const {
+  lightUp,
+  extinguish
+} = useSmokeEffect()
+
+const btn = document.getElementById('toggleDarkMode')
+btn?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (!document.body.classList.contains('dark')) {
+    document.body.classList.add('dark');
+    extinguish()  
+  } else {
+    document.body.classList.remove('dark');
+    lightUp()
+  }
+});
+
+
+// const turbulence = document.querySelector("#turbulence");
+// // let frames = 1;
+// let frames = 96;
+// let rad = Math.PI / 180;
+// let bfx, bfy;
+// let stop = false
+// function freqAnimation() {
+//     frames += .3
+
+//     bfx = 0.03;
+//     bfy = 0.03;
+
+//     bfx += 0.02 * Math.cos(frames * rad);
+//     bfy += 0.03 * Math.sin(frames * rad);
+
+//     turbulence?.setAttributeNS(null, "baseFrequency", bfy + ' ' + bfy);
+//     if (stop || bfy < 0.000001) return
+//     window.requestAnimationFrame(freqAnimation);
+// }
+
+// const smokeContainer = document.getElementById('smoke-container'); 
+// let opacity = 0
+
+// function fadeOut() {
+//   if (!smokeContainer)
+//     return;
+//   if (opacity <= 0.00003) {
+//       console.log('hide')
+//       opacity = 0     
+//       smokeContainer.style.opacity = '0';
+//       return;
+//   }
+//   smokeContainer.style.opacity = opacity.toString();
+//   opacity -= 0.01;
+//   window.requestAnimationFrame(fadeOut) 
+// }
+
+// function fadeIn() {
+//   if (opacity >= 1 || !smokeContainer) {
+//     console.log('show');
+//     return;
+//   }
+//   smokeContainer.style.opacity = opacity.toString();
+//   opacity += 0.001;
+//   window.requestAnimationFrame(fadeIn)
+// }
 </script>
+
+<svg>
+  <filter id="wave">
+    <feTurbulence x="0" y="0" baseFrequency="0.009" numOctaves="5" seed="2">
+      <!-- <animate attributeName="baseFrequency" dur="10s" values="0.02;0.005;0.02" repeatCount="indefinite"></animate> -->
+      <animate attributeName="baseFrequency" dur="10s" values="0;0.001;0.002;0.003;0.004;0.005;" repeatCount="indefinite" ></animate>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" scale="30"></feDisplacementMap>
+  </filter>
+</svg>
+
+<svg width="0">
+  <filter id="filter">
+    <feTurbulence id="turbulence" type="fractalNoise" baseFrequency=".03" numOctaves="30" />
+    <feDisplacementMap in="SourceGraphic" scale="30" />
+  </filter>
+</svg>
+
+<div id="toggleDarkMode" cursor-pointer absolute right-3 bottom-0 transition:persist overflow-hidden w-80px h-80px px-8>
+  <div
+    id="smoke-container"
+    class="smoke-container"
+    absolute
+    left-30px
+    flex
+  >
+    <div class="smoke"></div>
+  </div>
+  <!-- <div class="smoke" absolute left-30px></div> -->
+  <div class="light" absolute left-44px></div>
+  <div class="plate" absolute left-12></div>
+</div>

@@ -24,6 +24,7 @@ export default defineConfig({
     ['lh-tighter', { 'line-height': '0.8' }],
     ['text-last-justify', {'text-align-last': 'justify'}],
     ['font-serif-naux', {'font-family': 'ui-serif, Georgia, Cambria, "Times New Roman", Times, Helvetica, serif'}],
-    ['font-chinese', {'font-family': 'SourceHanSerif'}]
+    ['font-chinese', {'font-family': 'SourceHanSerif'}],
+    ['mobile-text', {'writing-mode': 'vertical-rl'}]
   ]
 })

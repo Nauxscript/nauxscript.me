@@ -2,8 +2,6 @@ import { walk } from 'estree-walker'
 import { parse } from 'node-html-parser'
 import type {  PluginOption} from 'vite'
 import Fontmin from 'fontmin'
-import { rmdir } from 'fs'
-import { resolve as pathResolve } from 'path'
 
 let allText = ''
 

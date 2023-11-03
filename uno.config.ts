@@ -19,7 +19,7 @@ export default defineConfig({
     transformerDirectives()
   ],
   shortcuts: {
-    'naux-logo': 'font-bold text-3.75rem bg-clip-text font-bold text-50px text-transparent from-gray-700 from-55% to-transparent',
+    'naux-logo': 'font-serif-naux font-black text-3.75rem bg-clip-text font-bold text-50px text-transparent from-gray-700 from-55% to-transparent',
     'logo-effect': 'bg-gradient-to-b my-0 mb-[-14px]',
     'logo-effect-md': 'bg-gradient-to-l mx-0 ml-[-14px]',
     'logo-dark': 'from-stone-300 from-55% to-neutral-600',
@@ -27,8 +27,8 @@ export default defineConfig({
   rules: [
     ['rounded-inregular-1', { 'border-radius': '83% 34% 50% 61% / 62% 56% 65% 50%' }],
     ['rounded-inregular-2', { 'border-radius': '35% 79% 50% 45% / 69% 92% 26% 35%' }],
-    ['lh-tighter', { 'line-height': '0.8' }],
     ['text-last-justify', {'text-align-last': 'justify'}],
+    ['lh-tighter', { 'line-height': '0.8' }],
     ['font-serif-naux', {'font-family': 'ui-serif, Georgia, Cambria, "Times New Roman", Times, Helvetica, serif'}],
     ['font-chinese', {'font-family': 'SourceHanSerif'}],
     ['mobile-text', {'writing-mode': 'vertical-rl'}],

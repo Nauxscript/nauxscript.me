@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import MainTitle from '../components/MainTitle.astro';
 // import Water from '../components/Water.astro';
 import WaterTest from '../components/WaterTest.astro';
+import Logo from '../components/Logo.astro';
 ---
 
 <style is:inline>
@@ -20,9 +21,10 @@ import WaterTest from '../components/WaterTest.astro';
 
 <Layout title="Hello, it's me.">
   <main flex-1 w-full text-gray-700 dark:text-stone-300>
-    <div lh-none font-bold <md:flex >
-      <MainTitle />
-      <div flex flex-col text-6 mb-8 w-full <md:mobile-text class="font-chinese">
+    <div lh-none font-bold w-full flex flex-col >
+      <!-- <MainTitle /> -->
+      <Logo></Logo>
+      <div flex flex-col flex-1 text-6 mb-8 <md:justify-center class="font-chinese">
         <span>玖陸年生人，</span>
         <span>昌黎先生所言“天下之窮處”人是也。</span>
         <span>貳零壹肆年求學廣東醫科大學，現事於羊城。</span>

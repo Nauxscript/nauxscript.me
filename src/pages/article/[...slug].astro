@@ -18,14 +18,12 @@ export async function getStaticPaths() {
 	}));
 }
 
-
-
 const {Content} = await post.render()
 
 ---
 
 <Layout title={post.data.title}>
-	<h1 transition:name={`article-title-${post.id}`} transition bg-black text-white>{post.data.title}</h1>
+	<h1 font-chinese transition:name={`article-title-${post.id}`} transition>{post.data.title}</h1>
   <Content></Content> 
   <ViewTransitions /> 
 </Layout>

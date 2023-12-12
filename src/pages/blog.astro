@@ -10,18 +10,19 @@ const posts = await getCollection('blog')
 ---
 
 <Layout title="Blog">
-  <main>
-    <h2 bg-yellow-200>this is blog page, there will be put the blog content</h2>
+  <main font-chinese>
     {
       posts.map((post, index) => (
-        <h3 bg-black transition:name={`article-title-${post.id}`} text-xl transition text-white>
-          <a href={`/article/${post.slug}`} >{post.data.title}</a>
-        </h3>
+        <div>
+          <h3 transition:name={`article-title-${post.id}`} text-xl transition>
+            <a naux-link href={`/article/${post.slug}`} >{post.data.title}</a>
+          </h3>
+        </div>
       ))
     }
-    <div h-20 w-20 flex bg-black rounded-full transition:name="test" transition absolute top-0>
+    <!-- <div h-20 w-20 flex bg-black rounded-full transition:name="test" transition absolute top-0>
       <a href="/" flex h-full w-full></a>
-    </div>
+    </div> -->
   </main>
   <ViewTransitions />
 </Layout>

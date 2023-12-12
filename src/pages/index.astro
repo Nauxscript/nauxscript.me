@@ -6,18 +6,6 @@ import WaterTest from '../components/WaterTest.astro';
 import Logo from '../components/Logo.astro';
 ---
 
-<style is:inline>
-  @font-face {
-    font-family: SourceHanSerif;
-    src: url('/fonts/SourceHanSerifTC-Bold.ttf');
-    font-weight: normal;
-    font-style: normal;
-  }
-  .font-chinese {
-    font-family: SourceHanSerif !important;
-  }
-</style>
-
 <Layout title="Hello, it's Nauxscript.">
   <main flex items-center w-full h-full text-gray-700 dark:text-stone-300>
     <div lh-none font-bold w-full flex flex-col >
@@ -26,7 +14,14 @@ import Logo from '../components/Logo.astro';
         <span>玖陸年生人，</span>
         <span>昌黎先生所言“天下之窮處”人是也。</span>
         <span>貳零壹肆年求學廣東醫科大學，現事於羊城。</span>
-        <a href=""></a>
+      </div>
+
+      <div font-chinese text-5>
+        <a naux-link href="./blog">杂文</a>
+        、
+        <a naux-link href="./project">项目</a>
+        、
+        <a naux-link href="https://github.com/Nauxscript">代码</a>
       </div>
       <!-- <div h-20 w-20 flex bg-black transition:name="test" transition>
         <a href="/blog" flex h-full w-full></a>

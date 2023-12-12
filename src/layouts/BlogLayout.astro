@@ -1,0 +1,27 @@
+---
+import "../styles/index.css";
+import { dateTransform } from '../utils/index';
+
+const { frontmatter } = Astro.props as {
+  frontmatter: {
+    title: string
+    createAt: string 
+    updateAt: string 
+    tags: string[]
+  }
+}
+---
+<html>
+  <style is:inline>
+    .post-content h1 {
+      display: none;
+    }
+  </style>
+  <main class="post-content" font-chinese>
+    <!-- <h1>{frontmatter.title}</h1> -->
+    <p>记于 {dateTransform(frontmatter.createAt)}</p>
+    <!-- <p>{dateTransform(frontmatter.updateAt)}</p> -->
+    <p>{frontmatter.tags.join('、')}</p>
+    <slot /> <!-- Markdown content is injected here -->
+  </main>
+</html>

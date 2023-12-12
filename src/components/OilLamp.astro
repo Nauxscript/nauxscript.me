@@ -201,54 +201,6 @@ btn?.addEventListener('click', (e) => {
     lightUp()
   }
 });
-
-
-// const turbulence = document.querySelector("#turbulence");
-// // let frames = 1;
-// let frames = 96;
-// let rad = Math.PI / 180;
-// let bfx, bfy;
-// let stop = false
-// function freqAnimation() {
-//     frames += .3
-
-//     bfx = 0.03;
-//     bfy = 0.03;
-
-//     bfx += 0.02 * Math.cos(frames * rad);
-//     bfy += 0.03 * Math.sin(frames * rad);
-
-//     turbulence?.setAttributeNS(null, "baseFrequency", bfy + ' ' + bfy);
-//     if (stop || bfy < 0.000001) return
-//     window.requestAnimationFrame(freqAnimation);
-// }
-
-// const smokeContainer = document.getElementById('smoke-container'); 
-// let opacity = 0
-
-// function fadeOut() {
-//   if (!smokeContainer)
-//     return;
-//   if (opacity <= 0.00003) {
-//       console.log('hide')
-//       opacity = 0     
-//       smokeContainer.style.opacity = '0';
-//       return;
-//   }
-//   smokeContainer.style.opacity = opacity.toString();
-//   opacity -= 0.01;
-//   window.requestAnimationFrame(fadeOut) 
-// }
-
-// function fadeIn() {
-//   if (opacity >= 1 || !smokeContainer) {
-//     console.log('show');
-//     return;
-//   }
-//   smokeContainer.style.opacity = opacity.toString();
-//   opacity += 0.001;
-//   window.requestAnimationFrame(fadeIn)
-// }
 </script>
 
 <svg>
@@ -268,17 +220,10 @@ btn?.addEventListener('click', (e) => {
   </filter>
 </svg>
 
-<div id="toggleDarkMode" cursor-pointer absolute right-3 bottom-0 transition:persist overflow-hidden w-80px h-80px px-8>
-  <div
-    id="smoke-container"
-    class="smoke-container"
-    absolute
-    left-30px
-    flex
-  >
+<div id="toggleDarkMode" cursor-pointer absolute left--10 bottom-0 transition:persist overflow-hidden w-80px h-80px px-8>
+  <div id="smoke-container" class="smoke-container" absolute left-30px flex>
     <div class="smoke"></div>
   </div>
-  <!-- <div class="smoke" absolute left-30px></div> -->
   <div class="light" absolute left-44px></div>
   <div class="plate" absolute left-12></div>
 </div>

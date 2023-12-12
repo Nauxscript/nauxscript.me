@@ -8,6 +8,7 @@
     "start": "astro dev ",
     "build": "astro build ",
     "build:font": "astro build && pnpm run font",
+    "build:font:log": "VITE_LOG_FONT=1 astro build && pnpm run font",
     "preview": "astro preview",
     "astro": "astro",
     "font": "font-spider --no-backup dist/index.html"

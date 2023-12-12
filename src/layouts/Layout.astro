@@ -20,19 +20,7 @@ const { title } = Astro.props as Props;
     <title>{title}</title>
   </head>
   <body h-screen w-screen overflow-hidden m-0 p-0>
-    <!-- <Article></Article> -->
-    <div
-      class="layout-container"
-      m-0
-      p-0
-      h-screen
-      w-screen
-      overflow-hidden
-      flex
-      flex-col
-      bg-stone-100
-      dark:bg-neutral-600
-    >
+    <div class="layout-container" m-0 p-0 h-screen w-screen overflow-hidden flex flex-col bg-stone-100 dark:bg-neutral-600>
       <div class="main-container" px-14 flex="col 1" lg="w-1024px m-auto py-0" <md="m-4 mt-12 px-0 mobile-text overflow-auto" >
         <slot />
       </div>

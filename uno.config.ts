@@ -23,7 +23,7 @@ export default defineConfig({
     'logo-effect': 'bg-gradient-to-b my-0 mb-[-14px]',
     'logo-effect-md': 'bg-gradient-to-l mx-0 ml-[-14px]',
     'logo-dark': 'from-stone-300 from-55% to-neutral-600',
-    'naux-link': 'text-inherit hover:text-#c04851 transition-all'
+    'naux-link': 'text-inherit hover:text-#c04851 transition-all',
   },
   rules: [
     ['rounded-inregular-1', { 'border-radius': '83% 34% 50% 61% / 62% 56% 65% 50%' }],
@@ -31,7 +31,8 @@ export default defineConfig({
     ['text-last-justify', {'text-align-last': 'justify'}],
     ['lh-tighter', { 'line-height': '0.8' }],
     ['font-serif-naux', {'font-family': 'ui-serif, Georgia, Cambria, "Times New Roman", Times, Helvetica, serif'}],
-    ['font-chinese', {'font-family': 'SourceHanSerif'}],
+    ['font-chinese', {'font-family': 'SourceHanSerif, ui-serif, Georgia, Cambria, "Times New Roman", Times, Helvetica, serif'}],
     ['mobile-text', {'writing-mode': 'vertical-rl'}],
+    ['naux-main-font',{'font-family': '"Noto Sans SC",-apple-system,blinkmacsystemfont,"Segoe UI",roboto,"Helvetica Neue",arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'}]
   ]
 })

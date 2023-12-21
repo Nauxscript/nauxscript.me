@@ -17,7 +17,7 @@ const { frontmatter } = Astro.props as {
       display: none;
     }
   </style>
-  <main class="post-content" naux-main-font>
+  <main class="post-content h-[calc(100%-8rem)]" naux-main-font  overflow-y-auto>
     <!-- <h1>{frontmatter.title}</h1> -->
     <p>记于 {dateTransform(frontmatter.createAt)}</p>
     <!-- <p>{dateTransform(frontmatter.updateAt)}</p> -->

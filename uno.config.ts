@@ -19,7 +19,8 @@ export default defineConfig({
     transformerDirectives()
   ],
   shortcuts: {
-    'naux-logo': 'font-serif-naux font-black text-3.25rem bg-clip-text font-bold text-transparent from-gray-700 from-55% to-transparent lh-12',
+    'naux-logo': 'font-serif-naux font-black bg-clip-text font-bold text-transparent from-gray-700 from-55% to-transparent',
+    'naux-logo-link': 'hover:text-#c04851 transition-all',
     'logo-effect': 'bg-gradient-to-b my-0 mb-[-14px]',
     'logo-effect-md': 'bg-gradient-to-l mx-0 ml-[-14px]',
     'logo-dark': 'from-stone-300 from-55% to-neutral-600',

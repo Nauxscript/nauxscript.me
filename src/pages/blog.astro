@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { ViewTransitions } from 'astro:transitions';
+import Logo from '../components/Logo.astro';
 
 // console.log(articles[0].getHeadings());
 // <div set:html={article.compiledContent()}></div>
@@ -10,6 +11,10 @@ const posts = await getCollection('blog')
 ---
 
 <Layout title="Blog">
+
+  <div flex-1 transition:name="logo" h-12 my-8 overflow-hidden text-2rem lh-14>
+    <Logo></Logo>
+  </div>
   <main font-chinese>
     {
       posts.map((post, index) => (

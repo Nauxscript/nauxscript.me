@@ -247,8 +247,13 @@ document.addEventListener('astro:page-load', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOMContentLoaded');
-  const { autoToggle } = useVisualMode()
+  const { autoToggle, toggleVisualMode } = useVisualMode()
   autoToggle()
+  const btn = document.getElementById('toggleDarkMode')
+  btn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleVisualMode()
+  });
 })
 
 document.addEventListener('astro:after-swap', ev => {
@@ -256,13 +261,6 @@ document.addEventListener('astro:after-swap', ev => {
   const { autoToggle } = useVisualMode()
   autoToggle() 
 });
-
-
-
-// document.addEventListener('astro:before-swap', ev => {
-  // nauxscript console
-  // console.log('%c nauxscript before swap', 'color: red')
-// });
 
 </script>
 

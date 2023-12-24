@@ -199,22 +199,62 @@ const useSmokeEffect = () => {
   }
 }
 
-document.addEventListener('astro:page-load', () => {
+const useVisualMode = () => {
   const {
     lightUp,
     extinguish
   } = useSmokeEffect()
+
+  const toggleVisualMode = () => {
+    if (!document.body.classList.contains('dark')) {
+      document.body.classList.toggle('dark');
+      sessionStorage.setItem('dark', '1')
+      extinguish()  
+    } else {
+      document.body.classList.toggle('dark');
+      sessionStorage.setItem('dark', '0')
+      lightUp()
+    }
+  }
+
+  const autoToggle = () => {
+    const isDarkMode = sessionStorage.getItem('dark') === '1'
+
+    // auto toggle visual mode
+    if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) || isDarkMode ) {
+      // 系统设置为深色模式
+      toggleVisualMode() 
+    } else {
+      // 系统设置为浅色模式
+      console.log('当前是浅色模式');
+    }
+  }
+
+  return {
+    toggleVisualMode,
+    autoToggle
+  }
+}
+
+document.addEventListener('astro:page-load', () => {
+  const { toggleVisualMode } = useVisualMode()
   const btn = document.getElementById('toggleDarkMode')
   btn?.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (!document.body.classList.contains('dark')) {
-      document.body.classList.add('dark');
-      extinguish()  
-    } else {
-      document.body.classList.remove('dark');
-      lightUp()
-    }
+    toggleVisualMode()
   });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOMContentLoaded');
+  const { autoToggle } = useVisualMode()
+  autoToggle()
+})
+
+document.addEventListener('astro:after-swap', ev => {
+  console.log('astro:after-swap');
+  const { autoToggle } = useVisualMode()
+  autoToggle() 
 });
 
 

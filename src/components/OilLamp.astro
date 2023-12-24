@@ -239,6 +239,8 @@ const useVisualMode = () => {
 let btnBinded = false
 
 document.addEventListener('astro:page-load', () => {
+  // console.log('astro:page-load');
+  // console.log(btnBinded);
   if (!btnBinded) {
     const { toggleVisualMode } = useVisualMode()
     const btn = document.getElementById('toggleDarkMode')
@@ -250,6 +252,7 @@ document.addEventListener('astro:page-load', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  // console.log('DOMContentLoaded');
   btnBinded = true
   const { autoToggle, toggleVisualMode } = useVisualMode()
   autoToggle()
@@ -261,7 +264,8 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 document.addEventListener('astro:after-swap', ev => {
-  console.log('astro:after-swap');
+  // console.log('astro:after-swap');
+  btnBinded = false
   const { autoToggle } = useVisualMode()
   autoToggle() 
 });

@@ -236,17 +236,21 @@ const useVisualMode = () => {
   }
 }
 
+let btnBinded = false
+
 document.addEventListener('astro:page-load', () => {
-  const { toggleVisualMode } = useVisualMode()
-  const btn = document.getElementById('toggleDarkMode')
-  btn?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleVisualMode()
-  });
+  if (!btnBinded) {
+    const { toggleVisualMode } = useVisualMode()
+    const btn = document.getElementById('toggleDarkMode')
+    btn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleVisualMode()
+    });
+  }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOMContentLoaded');
+  btnBinded = true
   const { autoToggle, toggleVisualMode } = useVisualMode()
   autoToggle()
   const btn = document.getElementById('toggleDarkMode')

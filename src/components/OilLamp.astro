@@ -130,7 +130,10 @@ const useSmokeEffect = () => {
   let baseFrequency = 0.03
   let opacity = 0
 
+  let quit = false 
+
   const smokeAnimate = () => {
+    if (quit) return
     frames += .3
     baseFrequency = 0.03
     baseFrequency += 0.03 * Math.sin(frames * rad)   
@@ -140,8 +143,9 @@ const useSmokeEffect = () => {
   } 
 
   function fadeIn() {
+    if (quit) return
     if (opacity >= 0.5) {
-      console.log('show');
+      // console.log('show');
       return;
     }
     smokeContainer!.style.opacity = opacity.toString();
@@ -150,8 +154,9 @@ const useSmokeEffect = () => {
   }
 
   function fadeOut() {
+    if (quit) return
     if (opacity <= 0.00003) {
-      console.log('hide')
+      // console.log('hide')
       opacity = 0     
       smokeContainer!.style.opacity = '0';
       return;
@@ -164,6 +169,7 @@ const useSmokeEffect = () => {
   
   const lightUp = () => {
     // reset
+    stop()
     frames = 96;
     baseFrequency = 0.03
     opacity = 0
@@ -172,55 +178,71 @@ const useSmokeEffect = () => {
     turbulence.setAttributeNS(null, "baseFrequency", `${baseFrequency}`);
   }
 
+  let fadeOutTimer:NodeJS.Timeout 
+  
   const extinguish = () => {
+    quit = false 
     fadeIn()
     smokeAnimate()
-    setTimeout(() => fadeOut(), 10000) 
+    fadeOutTimer = setTimeout(() => fadeOut(), 10000) 
+  }
+
+  const stop = () => {
+    quit = true
+    clearTimeout(fadeOutTimer)
   }
 
   return {
     lightUp,
-    extinguish
+    extinguish,
+    stop
   }
-
 }
 
-const {
-  lightUp,
-  extinguish
-} = useSmokeEffect()
-
-const btn = document.getElementById('toggleDarkMode')
-btn?.addEventListener('click', (e) => {
-  e.stopPropagation();
-  if (!document.body.classList.contains('dark')) {
-    document.body.classList.add('dark');
-    extinguish()  
-  } else {
-    document.body.classList.remove('dark');
-    lightUp()
-  }
+document.addEventListener('astro:page-load', () => {
+  const {
+    lightUp,
+    extinguish
+  } = useSmokeEffect()
+  const btn = document.getElementById('toggleDarkMode')
+  btn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!document.body.classList.contains('dark')) {
+      document.body.classList.add('dark');
+      extinguish()  
+    } else {
+      document.body.classList.remove('dark');
+      lightUp()
+    }
+  });
 });
+
+
+
+// document.addEventListener('astro:before-swap', ev => {
+  // nauxscript console
+  // console.log('%c nauxscript before swap', 'color: red')
+// });
+
 </script>
 
-<svg>
-  <filter id="wave">
-    <feTurbulence x="0" y="0" baseFrequency="0.009" numOctaves="5" seed="2">
-      <!-- <animate attributeName="baseFrequency" dur="10s" values="0.02;0.005;0.02" repeatCount="indefinite"></animate> -->
-      <animate attributeName="baseFrequency" dur="10s" values="0;0.001;0.002;0.003;0.004;0.005;" repeatCount="indefinite" ></animate>
-    </feTurbulence>
-    <feDisplacementMap in="SourceGraphic" scale="30"></feDisplacementMap>
-  </filter>
-</svg>
-
-<svg width="0">
-  <filter id="filter">
-    <feTurbulence id="turbulence" type="fractalNoise" baseFrequency=".03" numOctaves="30" />
-    <feDisplacementMap in="SourceGraphic" scale="30" />
-  </filter>
-</svg>
-
 <div id="toggleDarkMode" cursor-pointer absolute left--10 bottom-0 transition:persist overflow-hidden w-80px h-80px px-8>
+  <svg>
+    <filter id="wave">
+      <feTurbulence x="0" y="0" baseFrequency="0.009" numOctaves="5" seed="2">
+        <!-- <animate attributeName="baseFrequency" dur="10s" values="0.02;0.005;0.02" repeatCount="indefinite"></animate> -->
+        <animate attributeName="baseFrequency" dur="10s" values="0;0.001;0.002;0.003;0.004;0.005;" repeatCount="indefinite" ></animate>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" scale="30"></feDisplacementMap>
+    </filter>
+  </svg>
+
+  <svg width="0">
+    <filter id="filter">
+      <feTurbulence id="turbulence" type="fractalNoise" baseFrequency=".03" numOctaves="30" />
+      <feDisplacementMap in="SourceGraphic" scale="30" />
+    </filter>
+  </svg>
   <div id="smoke-container" class="smoke-container" absolute left-30px flex>
     <div class="smoke"></div>
   </div>

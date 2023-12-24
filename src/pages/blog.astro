@@ -12,10 +12,10 @@ const posts = await getCollection('blog')
 
 <Layout title="Blog">
 
-  <div flex-1 transition:name="logo" h-12 my-8 overflow-hidden text-2rem lh-14>
+  <div transition:name="logo" h-12 my-8 overflow-hidden text-2rem lh-14>
     <Logo></Logo>
   </div>
-  <main font-chinese>
+  <main font-chinese my-10>
     {
       posts.map((post, index) => (
         <div>

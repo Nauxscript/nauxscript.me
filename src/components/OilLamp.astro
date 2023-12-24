@@ -272,7 +272,19 @@ document.addEventListener('astro:after-swap', ev => {
 
 </script>
 
-<div id="toggleDarkMode" cursor-pointer absolute left--10 bottom-0 transition:persist overflow-hidden w-80px h-80px px-8>
+<div 
+  id="toggleDarkMode" 
+  cursor-pointer 
+  absolute 
+  left--10 
+  <md="left--4"
+  bottom-0 
+  overflow-hidden 
+  w-80px
+  h-80px
+  px-8
+  transition:persist 
+>
   <svg>
     <filter id="wave">
       <feTurbulence x="0" y="0" baseFrequency="0.009" numOctaves="5" seed="2">

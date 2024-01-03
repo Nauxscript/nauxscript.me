@@ -7,7 +7,7 @@ import Logo from '../components/Logo.astro';
 ---
 
 <Layout title="Hello, it's Nauxscript.">
-  <main flex items-center w-full h-full text-gray-700 dark:text-stone-300>
+  <main flex items-center w-full h-full naux-text-color>
     <div lh-none font-bold w-full flex flex-col >
       <div md="my-20" <md="mx-4" flex-1 transition:name="logo" text-3.25rem lh-12>
         <Logo></Logo>
@@ -25,11 +25,6 @@ import Logo from '../components/Logo.astro';
         、
         <a naux-link href="https://github.com/Nauxscript">代码</a>
       </div>
-      <!-- <div h-20 w-20 flex bg-black transition:name="test" transition>
-        <a href="/blog" flex h-full w-full></a>
-      </div> -->
-      <!-- <WaterTest /> -->
-      <!-- <Water /> -->
     </div>
   </main>
   <ViewTransitions />

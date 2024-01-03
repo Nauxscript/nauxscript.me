@@ -25,6 +25,7 @@ export default defineConfig({
     'logo-effect-md': 'bg-gradient-to-l mx-0 ml-[-14px]',
     'logo-dark': 'from-stone-300 from-55% to-neutral-600',
     'naux-link': 'text-inherit hover:text-#c04851 transition-all',
+    'naux-text-color': 'text-gray-700 dark:text-stone-300'
   },
   rules: [
     ['rounded-inregular-1', { 'border-radius': '83% 34% 50% 61% / 62% 56% 65% 50%' }],

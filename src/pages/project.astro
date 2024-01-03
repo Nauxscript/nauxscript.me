@@ -1,0 +1,35 @@
+---
+import Logo from "../components/Logo.astro";
+import Layout from "../layouts/Layout.astro";
+import MainContainer from '../layouts/MainContainer.astro';
+
+---
+
+<Layout title="Project">
+	<MainContainer>
+		<div grid grid-cols-1 gap-4>
+			<section>
+				<h3 text-xl transition>
+					<a naux-link href="https://github.com/Nauxscript/bilive" >Bilive</a>
+				</h3>
+				<article>
+					一个命令行弹幕姬。根据提供的直播间号码，在命令行中实时显示显示该直播间最新弹幕及礼物详情。
+				</article>
+			</section>
+			<section>
+				<h3 text-xl transition>
+					自制 Alfred Workflows
+				</h3>
+				<article>
+					<p><a naux-link href="https://github.com/Nauxscript/alfred-wechat-stickers" target="_blank" title="https://github.com/nauxscript/alfred-wechat-stickers">alfred-wechat-stickers</a>：快速输入微信默认表情（方便键盘操作）</p>
+					<p><a naux-link href="https://github.com/Nauxscript/alfred-open-port" target="_blank" title="https://github.com/Nauxscript/alfred-open-port">alfred-open-port</a>：快速在浏览器中访问指定端口号，前端开发利器。</p>
+					<p><a naux-link href="https://github.com/Nauxscript/alfred-easy-translate" target="_blank" title="https://github.com/Nauxscript/alfred-easy-translate">alfred-easy-translate</a>利用 MacOS 自带的翻译进行快速翻译。</p>
+					<p><a naux-link href="https://github.com/Nauxscript/alfred-open-pages" target="_blank" title="https://github.com/Nauxscript/alfred-open-pages">alfred-open-pages</a>快速打开一组网页。</p>
+				</article>
+			</section>
+			<section>
+				To be continue...
+			</section>
+		</div>
+	</MainContainer>
+</Layout>

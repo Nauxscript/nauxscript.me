@@ -1,19 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { ViewTransitions } from 'astro:transitions';
-import Logo from '../components/Logo.astro';
-
 import { getCollection } from 'astro:content';
+import MainContainer from '../layouts/MainContainer.astro';
 
 const posts = await getCollection('blog')
 ---
 
 <Layout title="Blog">
-
-  <div transition:name="logo" h-12 my-8 overflow-hidden text-2rem lh-14>
-    <Logo></Logo>
-  </div>
-  <main font-chinese my-10>
+  <MainContainer>
     {
       posts.filter(p => !p.data.invisible).map((post, index) => (
         <div>
@@ -23,10 +17,5 @@ const posts = await getCollection('blog')
         </div>
       ))
     }
-  </main>
-  <ViewTransitions />
+  </MainContainer>
 </Layout>
-
-<style>
-  
-</style>

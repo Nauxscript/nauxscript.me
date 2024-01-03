@@ -1,0 +1,13 @@
+---
+import ViewTransitions from "astro/components/ViewTransitions.astro";
+import Logo from "../components/Logo.astro";
+
+---
+
+<div transition:name="logo" h-12 my-8 overflow-hidden text-2rem lh-14>
+  <Logo></Logo>
+</div>
+<main font-chinese my-10 naux-text-color>
+  <slot></slot> 
+</main>
+<ViewTransitions />

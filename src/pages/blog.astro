@@ -17,7 +17,7 @@ const posts = await getCollection('blog')
   </div>
   <main font-chinese my-10>
     {
-      posts.map((post, index) => (
+      posts.filter(p => !p.data.invisible).map((post, index) => (
         <div>
           <h3 transition:name={`article-title-${post.id}`} text-xl transition>
             <a naux-link href={`/article/${post.slug}`} >{post.data.title}</a>

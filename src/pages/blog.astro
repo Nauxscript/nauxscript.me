@@ -3,8 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import { ViewTransitions } from 'astro:transitions';
 import Logo from '../components/Logo.astro';
 
-// console.log(articles[0].getHeadings());
-// <div set:html={article.compiledContent()}></div>
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog')
@@ -25,9 +23,6 @@ const posts = await getCollection('blog')
         </div>
       ))
     }
-    <!-- <div h-20 w-20 flex bg-black rounded-full transition:name="test" transition absolute top-0>
-      <a href="/" flex h-full w-full></a>
-    </div> -->
   </main>
   <ViewTransitions />
 </Layout>

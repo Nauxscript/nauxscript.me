@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content'
 import Layout from '../../layouts/Layout.astro';
 import { ViewTransitions } from 'astro:transitions';
-
+import { dateTransform } from '../../utils/index';
 type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props
@@ -23,7 +23,14 @@ const {Content} = await post.render()
 ---
 
 <Layout title={post.data.title}>
-	<h1 naux-text-color font-chinese transition:name={`article-title-${post.id}`} transition>{post.data.title}</h1>
+	<h1 naux-text-color font-chinese transition:name={`article-title-${post.id}`} transition>
+		{post.data.title}
+	</h1>
+	<div flex mb-2>
+		<span naux-text-color mr-6>{post.data.tags.join('、')}</span>
+		<span naux-text-color>记于 {dateTransform(post.data.createAt)}</span>
+	</div>
+	<a naux-link mr-6 mb-2 href="javascript:history.back(-1)">../</a>
   <Content></Content> 
   <ViewTransitions /> 
 </Layout>

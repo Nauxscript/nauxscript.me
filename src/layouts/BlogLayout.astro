@@ -1,6 +1,5 @@
 ---
 import "../styles/index.css";
-import { dateTransform } from '../utils/index';
 
 const { frontmatter } = Astro.props as {
   frontmatter: {
@@ -20,9 +19,7 @@ const { frontmatter } = Astro.props as {
   </style>
   <main class="post-content h-[calc(100%-8rem)]" naux-main-font  overflow-y-auto naux-text-color>
     <!-- <h1>{frontmatter.title}</h1> -->
-    <p>记于 {dateTransform(frontmatter.createAt)}</p>
-    <!-- <p>{dateTransform(frontmatter.updateAt)}</p> -->
-    <p>{frontmatter.tags.join('、')}</p>
+    
     <slot /> <!-- Markdown content is injected here -->
   </main>
 </html>

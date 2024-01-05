@@ -178,7 +178,7 @@ const useSmokeEffect = () => {
     turbulence.setAttributeNS(null, "baseFrequency", `${baseFrequency}`);
   }
 
-  let fadeOutTimer:NodeJS.Timeout 
+  let fadeOutTimer: NodeJS.Timeout
   
   const extinguish = () => {
     quit = false 
@@ -232,42 +232,36 @@ const useVisualMode = () => {
 
   return {
     toggleVisualMode,
-    autoToggle
+    autoToggle,
   }
 }
 
-let btnBinded = false
-
-document.addEventListener('astro:page-load', () => {
-  // console.log('astro:page-load');
-  // console.log(btnBinded);
-  if (!btnBinded) {
-    const { toggleVisualMode } = useVisualMode()
-    const btn = document.getElementById('toggleDarkMode')
-    btn?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleVisualMode()
-    });
-  }
-});
+const clickFn = () => {
+  console.log('click');
+  const { toggleVisualMode } = useVisualMode()
+  toggleVisualMode()
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  // console.log('DOMContentLoaded');
-  btnBinded = true
-  const { autoToggle, toggleVisualMode } = useVisualMode()
+  console.log('DOMContentLoaded');
+  const { autoToggle } = useVisualMode()
   autoToggle()
   const btn = document.getElementById('toggleDarkMode')
-  btn?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleVisualMode()
-  });
+  btn?.addEventListener('click', clickFn)
+})
+
+document.addEventListener('astro:before-swap', ev => {
+  console.log('astro:before-swap');
+  const btn = document.getElementById('toggleDarkMode')
+  btn?.removeEventListener('click', clickFn)
 })
 
 document.addEventListener('astro:after-swap', ev => {
-  // console.log('astro:after-swap');
-  btnBinded = false
+  console.log('astro:after-swap');
   const { autoToggle } = useVisualMode()
   autoToggle() 
+  const btn = document.getElementById('toggleDarkMode')
+  btn?.addEventListener('click', clickFn)
 });
 
 </script>

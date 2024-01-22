@@ -1,3 +1,11 @@
+---
+layout: ../../layouts/BlogLayout.astro
+title: 200 行代码实现一个超瘦的 React （起步篇）
+createAt: 2024-01-22 15:30:17
+updateAt: 2024-01-22 15:30:17
+tags: ["Front-End", "React", "Source Code"]
+---
+
 > 'Hi, my name is, what?',
 > 'My name is, who?',
 > 'My name is, chka-chka',

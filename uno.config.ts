@@ -1,6 +1,7 @@
 import { defineConfig, presetAttributify, presetUno } from 'unocss';
 import presetIcons from '@unocss/preset-icons'
 import transformerDirectives from '@unocss/transformer-directives'
+import { presetTypography } from '@unocss/preset-typography'
 
 export default defineConfig({
   presets: [
@@ -13,7 +14,23 @@ export default defineConfig({
       extraProperties: {
         display: 'inline-block'
       }
-    })
+    }),
+    presetTypography({
+      selectorName: 'markdown', // now use like `markdown markdown-gray`, `not-markdown`
+      // cssExtend is an object with CSS selector as key and
+      // CSS declaration block as value like writing normal CSS.
+      cssExtend: {
+        'code': {
+          color: '#8b5cf6',
+        },
+        'a:hover': {
+          color: '#f43f5e',
+        },
+        'a:visited': {
+          color: '#14b8a6',
+        },
+      },
+    }),
   ],
   transformers: [
     transformerDirectives()

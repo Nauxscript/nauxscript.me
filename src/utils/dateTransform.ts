@@ -1,7 +1,7 @@
 
 const monthArray = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '拾月', '拾壹月', '拾贰月']
-const yearArray = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖']
-const dayArray = ['', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖', '拾']
+const yearArray = ['零', '壹', '貳', '叄', '肆', '伍', '陸', '柒', '捌', '玖']
+const dayArray = ['', '壹', '貳', '叄', '肆', '伍', '陸', '柒', '捌', '玖', '拾']
 
 export function dateTransform(dateStr: string) {
   const date = new Date(dateStr)

@@ -26,7 +26,7 @@ const {Content} = await post.render()
 	<h1 naux-text-color font-chinese transition:name={`article-title-${post.id}`} transition>
 		{post.data.title}
 	</h1>
-	<div flex mb-2>
+	<div flex mb-2 font-chinese>
 		<span naux-text-color mr-6>{post.data.tags.join('、')}</span>
 		<span naux-text-color>记于 {dateTransform(post.data.createAt)}</span>
 	</div>

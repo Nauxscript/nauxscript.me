@@ -27,8 +27,8 @@ const {Content} = await post.render()
 		<a px-2 -left-11 absolute naux-link invisible opacity-0 class="group-hover:visible group-hover:opacity-100" href="javascript:history.back(-1)">𡿨</a>
 		{post.data.title}	
 	</h1>
-		<span naux-text-color mr-6>{post.data.tags.join('、')}</span>
 	<div flex mb-4 font-chinese>
+		<span naux-text-color mr-6>{post.data.tags.map((t: string) => `#${t}`).join('、')}</span>
 		<span naux-text-color>记于 {dateTransform(post.data.createAt)}</span>
 	</div>
   <Content></Content> 

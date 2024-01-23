@@ -7,8 +7,11 @@ tags: ["Front-End", "React", "Source Code"]
 ---
 
 > 'Hi, my name is, what?',
+> 
 > 'My name is, who?',
+> 
 > 'My name is, chka-chka',
+> 
 > 'Slim React! 🤣' 
 
 > 月更计划 2/1
@@ -57,6 +60,7 @@ function createRoot(container) {
 这里就有个大问题：如何渲染 `JSX` 组件？
 
 遇到问题的时候，我们可以暂且简化问题，然后简单实现；对于 `JSX` 组件来说，我们可以看看它的本质是什么。打开 [React Playground](https://playcode.io/react) ，在代码声明一个简单组件并输出到控制台查看它的结构：
+
 ![image.png](https://nauxscript-blog.oss-cn-hongkong.aliyuncs.com/slim-react-1.png)
 
 可以看到，最终 `JSX` 组件在代码中只是一个对象，看起来是对元素的一个抽象描述。根据 `React` 文档中对 `React Element` 的[描述](https://react.dev/reference/react/createElement#what-is-a-react-element-exactly)： `React Element` 是对用户界面的一部分的轻量级描述。而 `React Element` 可以通过 `React` 的 [`createElement`](https://react.dev/reference/react/createElement#createelement)  方法进行创建。我们可以根据文档尝试在 React Playground 中创建 `<h1>what is JSX Component ?</h1>` 对应的 `React Element`，看看返回的数据的结构是怎么样的：

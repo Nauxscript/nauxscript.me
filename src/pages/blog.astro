@@ -2,20 +2,56 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import MainContainer from '../layouts/MainContainer.astro';
+import { dateTransform } from '../utils/index';
 
-const posts = await getCollection('blog')
+const allPosts = await getCollection('blog')
+
+const postsGrouped = allPosts.sort((a, b) => b.data.createAt - a.data.createAt)
+  .reduce<{
+    years: string[]
+    group: Record<string, Array<{dateStr: string, post: typeof allPosts[number]}>>
+  }>((acc, post) => {
+  const {year, month, day} = dateTransform(post.data.createAt, true)
+  const dateStr = `${month}${day}`
+  if (acc.group[year]) {
+    acc.group[year].push({
+      dateStr,
+      post
+    })
+  } else {
+    acc.group[year] = [{
+      dateStr,
+      post
+    }]
+    acc.years.push(year)
+  }
+  return acc
+}, {
+  years: [],
+  group: {}
+})
 ---
 
 <Layout title="Blog">
   <MainContainer>
-    {
-      posts.filter(p => !p.data.invisible).map((post, index) => (
-        <div>
-          <h3 transition:name={`article-title-${post.id}`} text-xl transition>
-            <a naux-link href={`/article/${post.slug}`} >{post.data.title}</a>
-          </h3>
-        </div>
-      ))
-    }
+    <div>
+      {
+        postsGrouped.years.map(year => (
+          <div>
+            <h2>{year}</h2>
+            {
+              postsGrouped.group[year].map(postRaw => (
+                <div>
+                  <h3 transition:name={`article-title-${postRaw.post.id}`} text-xl transition flex>
+                    <span naux-text-color text-3 min-w-18 w-24 text-right mr-4>{postRaw.dateStr}</span>
+                    <a naux-link href={`/article/${postRaw.post.slug}`} >{postRaw.post.data.title}</a>
+                  </h3>
+                </div>
+              ))
+            }    
+          </div>
+        ))
+      }
+    </div>
   </MainContainer>
 </Layout>

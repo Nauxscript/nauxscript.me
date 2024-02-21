@@ -18,6 +18,13 @@ const { title } = Astro.props as Props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JC7XN2NJS1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(...args: any[]){dataLayer.push(args);}
+    gtag('js', new Date());
+    gtag('config', 'G-JC7XN2NJS1');
+  </script>
   <style>
     @font-face {
       font-family: SourceHanSerif;
@@ -29,6 +36,7 @@ const { title } = Astro.props as Props;
       font-family: SourceHanSerif !important;
     }
   </style>
+  <!-- Google tag (gtag.js) -->
   <body h-screen w-screen overflow-hidden m-0 p-0>
     <div class="layout-container" m-0 p-0 h-screen w-screen flex flex-col bg-stone-100 dark:bg-neutral-600>
       <div

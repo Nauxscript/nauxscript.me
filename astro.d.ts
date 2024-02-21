@@ -4,4 +4,8 @@ declare global {
   namespace astroHTML.JSX {
     interface HTMLAttributes extends AttributifyAttributes { }
   }
+
+  namespace globalThis {
+    var dataLayer: any[]
+  }
 }

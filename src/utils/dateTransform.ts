@@ -25,5 +25,5 @@ export function dateTransform(dateStr: string, obj = false) {
       day: `${day}日`
     }
   }
-  return ` ${year}年${month}${day}日`
+  return ` ${year}年${month}月${day}日`
 }

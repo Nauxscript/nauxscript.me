@@ -25,5 +25,8 @@
     "fontmin": "^1.0.1",
     "node-html-parser": "^6.1.6",
     "unocss": "^0.58.3"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.7"
   }
 }

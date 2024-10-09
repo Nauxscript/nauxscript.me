@@ -4,6 +4,7 @@ import { vitePluginAstroFontmin } from './vite-plugin-astro-fontmin'
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://nauxscript.com',
   integrations: [
     Unocss()
   ],

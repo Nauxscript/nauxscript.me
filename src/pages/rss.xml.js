@@ -13,7 +13,7 @@ export async function GET(context) {
     // 输出的 xml 中的`<title>`字段
     title: 'Nauxscript\'s Blog',
     // 输出的 xml 中的`<description>`字段
-    description: 'Nauxscript\'s Blog',
+    description: 'Nauxscript\'s Blog；feedId:66762607200989184+userId:66740516881069056',
     // 从端点上下文获取项目“site”
     site: context.site,
     // 输出的 xml 中的`<item>`数组

@@ -1,7 +1,8 @@
 import rss from '@astrojs/rss';
+import { getCollection } from 'astro:content';
 
-export function GET(context) {
-  const blog = getCollection('blog');
+export async function GET(context) {
+  const blog = await getCollection('blog');
   const posts = blog.map((post) => ({
     title: post.data.title,
     pubDate: post.data.createAt,

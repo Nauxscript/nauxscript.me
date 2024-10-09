@@ -6,7 +6,7 @@ export async function GET(context) {
   const posts = blog.map((post) => ({
     title: post.data.title,
     pubDate: post.data.createAt,
-    link: `/blog/${post.slug}/`,
+    link: `/article/${post.slug}/`,
   }));
 
   return rss({
@@ -19,6 +19,8 @@ export async function GET(context) {
     // 输出的 xml 中的`<item>`数组
     // 有关使用内容集合和 glob 导入的示例，请参阅“生成`items`”部分
     items: posts,
+    // 是否在路径末尾添加斜杠
+    trailingSlash: false,
     // (可选) 注入自定义 xml
     customData: `<language>zh-CN</language>`,
   });
